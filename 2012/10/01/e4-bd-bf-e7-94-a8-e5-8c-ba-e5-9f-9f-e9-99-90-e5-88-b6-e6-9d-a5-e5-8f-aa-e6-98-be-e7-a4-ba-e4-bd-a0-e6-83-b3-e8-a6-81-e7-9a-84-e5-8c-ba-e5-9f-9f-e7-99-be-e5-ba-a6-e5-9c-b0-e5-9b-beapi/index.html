@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>使用区域限制来只显示你想要的区域(百度地图API) | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="区域限制,百度地图,百度地图api,限制缩放">
+    <meta name="description" content="在使用百度地图的时候，开启了缩放功能之后，滚轮一个猛滚，就发现突然“整个世界，尽收眼底”了。。。呵呵
+我是不想看到这样的效果的，只想让用户再怎么划滚轮，都只在某一个区域，如上海市，北京市等
+那么我们开始吧:
+[
+                
+                    
+                    
+                
+                区域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用区域限制来只显示你想要的区域(百度地图API)">
+<meta property="og:url" content="http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在使用百度地图的时候，开启了缩放功能之后，滚轮一个猛滚，就发现突然“整个世界，尽收眼底”了。。。呵呵
+我是不想看到这样的效果的，只想让用户再怎么划滚轮，都只在某一个区域，如上海市，北京市等
+那么我们开始吧:
+[
+                
+                    
+                    
+                
+                区域">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/区域限制.gif">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/zoom.gif">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/区域限制完.gif">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用区域限制来只显示你想要的区域(百度地图API)">
+<meta name="twitter:description" content="在使用百度地图的时候，开启了缩放功能之后，滚轮一个猛滚，就发现突然“整个世界，尽收眼底”了。。。呵呵
+我是不想看到这样的效果的，只想让用户再怎么划滚轮，都只在某一个区域，如上海市，北京市等
+那么我们开始吧:
+[
+                
+                    
+                    
+                
+                区域">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/区域限制.gif">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用区域限制来只显示你想要的区域(百度地图API)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用区域限制来只显示你想要的区域(百度地图API)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2012-10-01T11:37:16.000Z" itemprop="datePublished" class="page-time">
+  2012-10-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#http-cgmblog-sinaapp-com-zone-limit"><span class="post-toc-number">1.</span> <span class="post-toc-text">http://cgmblog.sinaapp.com/zone_limit</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用区域限制来只显示你想要的区域(百度地图API)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2012年10月01日 19:37" datetime="2012-10-01T11:37:16.000Z"  itemprop="datePublished">2012-10-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在使用百度地图的时候，开启了缩放功能之后，滚轮一个猛滚，就发现突然“整个世界，尽收眼底”了。。。呵呵</p>
+<p>我是不想看到这样的效果的，只想让用户再怎么划滚轮，都只在某一个区域，如上海市，北京市等</p>
+<p>那么我们开始吧:</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/区域限制.gif" alt="区域限制](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/区域限制.gif" title="">
+                </div>
+                <div class="image-caption">区域限制](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/区域限制.gif</div>
+            </figure></p>
+<p>这个是百度地图api网上的陈述，来源于：<a href="http://developer.baidu.com/map/library.htm" target="_blank" rel="external">http://developer.baidu.com/map/library.htm</a></p>
+<p>试着打开他的demo，<a href="http://api.map.baidu.com/library/AreaRestriction/1.2/examples/AreaRestriction.html" target="_blank" rel="external">http://api.map.baidu.com/library/AreaRestriction/1.2/examples/AreaRestriction.html</a> 嗯，区域果然被限制住了，只在北京着一块区域，拖到其他区域，是会自动弹出北京，但是鼠标一滚，还是能看到整个世界，不行啊。。。继续研究</p>
+<p>想到，要让他看不到全球，不就是让他不能缩放到那么大嘛。。。</p>
+<a id="more"></a>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/zoom.gif" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/zoom.gif" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/zoom.gif</div>
+            </figure></p>
+<p>以上是百度地图API文档里的，在其“核心类”的“MapOptions”中，找到这2个属性，可以控制地图的缩放最小级别和最大级别，赶紧试试咯</p>
+<p>打开“区域限制”demo的代码</p>
+<p>[html]<br>&lt;html&gt;<br>    &lt;head&gt;<br>        &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;<br>        &lt;title&gt;<br>            区域限制<br>        &lt;/title&gt;<br>        &lt;script type=&quot;text/javascript&quot;<br>                src=&quot;<a href="http://api.map.baidu.com/api?v=1.2&quot;&amp;gt" target="_blank" rel="external">http://api.map.baidu.com/api?v=1.2&quot;&amp;gt</a>;<br>        &lt;/script&gt;<br>        &lt;script type=&quot;text/javascript&quot;<br>                src=&quot;<a href="http://api.map.baidu.com/library/" target="_blank" rel="external">http://api.map.baidu.com/library/</a><br>                AreaRestriction/1.2/src/AreaRestriction_min.js&quot;&gt;<br>        &lt;/script&gt;<br>    &lt;/head&gt;<br>    &lt;body&gt;<br>        &lt;div style=&quot;width:700px;height:400px;border:1px&quot; id=&quot;container&quot;&gt;<br>        &lt;/div&gt;<br>    &lt;/body&gt;<br>&lt;/html&gt;<br>&lt;script type=&quot;text/javascript&quot;&gt;<br>    var map = new BMap.Map(&quot;container&quot;);<br>    map.centerAndZoom(new BMap.Point(116.404, 39.915), 13);<br>    map.enableScrollWheelZoom();<br>    var b = new BMap.Bounds(new BMap.Point(116.027143, 39.772348),<br>            new BMap.Point(116.832025, 40.126349));<br>    try {<br>        BMapLib.AreaRestriction.setBounds(map, b);<br>    } catch(e) {<br>        alert(e);<br>    }<br>&lt;/script&gt;<br>[/html]</p>
+<p>我们将第21行代码改造一下，加上限制缩放大小，看看效果吧</p>
+<p>将21行改成：</p>
+<p>var map = new BMap.Map(“container”,{minZoom:11,maxZoom:17});</p>
+<p>嗯，我觉得应该差不多了，看看最终的效果吧</p>
+<h2 id="http-cgmblog-sinaapp-com-zone-limit"><a href="#http-cgmblog-sinaapp-com-zone-limit" class="headerlink" title="http://cgmblog.sinaapp.com/zone_limit"></a><a href="http://cgmblog.sinaapp.com/zone_limit" target="_blank" rel="external">http://cgmblog.sinaapp.com/zone_limit</a></h2><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/区域限制完.gif" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/区域限制完.gif" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/区域限制完.gif</div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.351Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/" target="_blank" rel="external">http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区域限制/">区域限制</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/百度地图/">百度地图</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/百度地图api/">百度地图api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/限制缩放/">限制缩放</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/&title=《使用区域限制来只显示你想要的区域(百度地图API)》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/&title=《使用区域限制来只显示你想要的区域(百度地图API)》 — Hexo&source=在使用百度地图的时候，开启了缩放功能之后，滚轮一个猛滚，就发现突然“整个世界，尽收眼底”了。。。呵呵
+我是不想看到这样的效果的，只想让用户再怎么划滚轮，都..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用区域限制来只显示你想要的区域(百度地图API)》 — Hexo&url=http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">PHP获取你的外网IP地址</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi" data-title="使用区域限制来只显示你想要的区域(百度地图API)" data-url="http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/&title=《使用区域限制来只显示你想要的区域(百度地图API)》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/&title=《使用区域限制来只显示你想要的区域(百度地图API)》 — Hexo&source=在使用百度地图的时候，开启了缩放功能之后，滚轮一个猛滚，就发现突然“整个世界，尽收眼底”了。。。呵呵
+我是不想看到这样的效果的，只想让用户再怎么划滚轮，都..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用区域限制来只显示你想要的区域(百度地图API)》 — Hexo&url=http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,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" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

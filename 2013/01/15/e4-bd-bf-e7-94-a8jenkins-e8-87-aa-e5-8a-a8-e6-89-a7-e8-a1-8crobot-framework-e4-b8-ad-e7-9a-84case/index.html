@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>使用Jenkins自动执行Robot Framework中的case | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Jenkins,RFS,Robot Framework">
+    <meta name="description" content="1Jenkins的介绍Jenkins由以前的hudson更名而来。Jenkins的主要功能是监视重复工作的执行，例如软件工程的构建或在cron下设置的jobs。具体地：
+*软件的持续构建和测试。本质上提供了一个易于使用的持续集成系统，使得开发人员更容易地将改变集成到工程中，使得用户更容易获得一个新的build。自动化，持续的构建提高了软件开发的效率。
+*监视外部运行的job的执行。例如，对于cro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Jenkins自动执行Robot Framework中的case">
+<meta property="og:url" content="http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1Jenkins的介绍Jenkins由以前的hudson更名而来。Jenkins的主要功能是监视重复工作的执行，例如软件工程的构建或在cron下设置的jobs。具体地：
+*软件的持续构建和测试。本质上提供了一个易于使用的持续集成系统，使得开发人员更容易地将改变集成到工程中，使得用户更容易获得一个新的build。自动化，持续的构建提高了软件开发的效率。
+*监视外部运行的job的执行。例如，对于cro">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/jenkins-rf.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.362Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Jenkins自动执行Robot Framework中的case">
+<meta name="twitter:description" content="1Jenkins的介绍Jenkins由以前的hudson更名而来。Jenkins的主要功能是监视重复工作的执行，例如软件工程的构建或在cron下设置的jobs。具体地：
+*软件的持续构建和测试。本质上提供了一个易于使用的持续集成系统，使得开发人员更容易地将改变集成到工程中，使得用户更容易获得一个新的build。自动化，持续的构建提高了软件开发的效率。
+*监视外部运行的job的执行。例如，对于cro">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/jenkins-rf.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用Jenkins自动执行Robot Framework中的case</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用Jenkins自动执行Robot Framework中的case</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-01-15T12:47:10.000Z" itemprop="datePublished" class="page-time">
+  2013-01-15
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1Jenkins的介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">1Jenkins的介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2安装Jenkins"><span class="post-toc-number">2.</span> <span class="post-toc-text">2安装Jenkins</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3安装Jenkins的robot-framework插件"><span class="post-toc-number">3.</span> <span class="post-toc-text">3安装Jenkins的robot framework插件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4使用Robot-Framework-plugin创建新Job"><span class="post-toc-number">4.</span> <span class="post-toc-text">4使用Robot Framework plugin创建新Job</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用Jenkins自动执行Robot Framework中的case</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013年01月15日 20:47" datetime="2013-01-15T12:47:10.000Z"  itemprop="datePublished">2013-01-15</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="1Jenkins的介绍"><a href="#1Jenkins的介绍" class="headerlink" title="1Jenkins的介绍"></a>1Jenkins的介绍</h2><p>Jenkins由以前的hudson更名而来。Jenkins的主要功能是监视重复工作的执行，例如软件工程的构建或在cron下设置的jobs。具体地：</p>
+<p>*软件的持续构建和测试。本质上提供了一个易于使用的持续集成系统，使得开发人员更容易地将改变集成到工程中，使得用户更容易获得一个新的build。自动化，持续的构建提高了软件开发的效率。</p>
+<p>*监视外部运行的job的执行。例如，对于cron，你将会收到email包含job的output，你需要检查email来确认是否job broke。Jenkins将保持这些outputs且使得你更加容易地注意到job的broke。</p>
+<a id="more"></a>
+<h2 id="2安装Jenkins"><a href="#2安装Jenkins" class="headerlink" title="2安装Jenkins"></a>2安装Jenkins</h2><p>下载地址 <a href="http://jenkins-ci.org/，自己下载安装一下即可，这里不多说了，相信大家都会的" target="_blank" rel="external">http://jenkins-ci.org/，自己下载安装一下即可，这里不多说了，相信大家都会的</a></p>
+<h2 id="3安装Jenkins的robot-framework插件"><a href="#3安装Jenkins的robot-framework插件" class="headerlink" title="3安装Jenkins的robot framework插件"></a>3安装Jenkins的robot framework插件</h2><p>打开你的Jenkins(默认的话就是localhost:8080)，来到插件管理</p>
+<p>去可选插件中搜索Robot Framework ，并按照Robot Framework plugin即可</p>
+<h2 id="4使用Robot-Framework-plugin创建新Job"><a href="#4使用Robot-Framework-plugin创建新Job" class="headerlink" title="4使用Robot Framework plugin创建新Job"></a>4使用Robot Framework plugin创建新Job</h2><p>1，点击新Job，输入一个任务名称，并选择“<strong>构建一个自由风格的软件项目</strong>”，ok</p>
+<p>2，在构建中，选择“<strong>Execute Windows batch command</strong>”，输入pybot  d:\rf\a.txt (这只是举个例子，具体执行哪个目录下的哪些case，由你自己决定，命令怎么写？请参见RF的官方用户文档)</p>
+<p>3，构建后的操作，选择“<strong>Publish Robot Framework test results</strong>”</p>
+<p>Directory of Robot output 填 \</p>
+<p>Log/Report link 要根据你的output文件了，默认的话，你可以不填</p>
+<p>Thresholds for build result  阀值设置，暂时还没明白透，暂时写个50和50吧</p>
+<p>ok，基本就这样吧，保存</p>
+<p>之后点击立刻构建吧</p>
+<p>如果一切顺利，你的case运行结果就会展现了</p>
+<p>最后截个图吧</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/jenkins-rf.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/jenkins-rf.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/jenkins-rf.png</div>
+            </figure></p>
+<p>最后问个问题，这个插件对中文的case名称似乎支持的不好，都显示“？？？？？？”，望高人指点！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.362Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/" target="_blank" rel="external">http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jenkins/">Jenkins</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFS/">RFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/&title=《使用Jenkins自动执行Robot Framework中的case》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/&title=《使用Jenkins自动执行Robot Framework中的case》 — Hexo&source=1Jenkins的介绍Jenkins由以前的hudson更名而来。Jenkins的主要功能是监视重复工作的执行，例如软件工程的构建或在cron下设置的jo..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Jenkins自动执行Robot Framework中的case》 — Hexo&url=http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2013/03/20/robot-framework-e4-b8-ad-e5-90-af-e5-8a-a8firefox-e6-97-b6-e5-8a-a0-e8-bd-bd-e6-89-a9-e5-b1-95/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Robot Framework中启动Firefox时加载扩展</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Robot Framework中使用AtuoItLibrary教程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case" data-title="使用Jenkins自动执行Robot Framework中的case" data-url="http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/&title=《使用Jenkins自动执行Robot Framework中的case》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/&title=《使用Jenkins自动执行Robot Framework中的case》 — Hexo&source=1Jenkins的介绍Jenkins由以前的hudson更名而来。Jenkins的主要功能是监视重复工作的执行，例如软件工程的构建或在cron下设置的jo..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用Jenkins自动执行Robot Framework中的case》 — Hexo&url=http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEg0lEQVR42u3aS47bSBAFwL7/pT2bWczAkPxeJg0ou4OrhiyRVUED+auvr/j69Z/r/XdeffLqDu/vmazk1VN+v2ZP/MKECRMmTMeZ8lu///zVonPW5FnJ3dpvvt87JkyYMGH6Hkz5g5Ng/H7DbaqRryF5bgKKCRMmTJh+MlNbjibJx37DbfjHhAkTJkyY8kZqmyi0ndUWMSluMWHChAnTT2PKb9c2edsCeBbCN43jh3vhmDBhwoTpw5g2gfn63w9fmDBhwoTpw5h+ldcs9Oal9Wzw2R4wqneNCRMmTJjOMrVDwbapmpem+XPzxvF+CIoJEyZMmK4zJQ+eJQRt+N8kJbP2cXLwCBMmTJgwXWdqD8rsx5n5gZvZJy1rW35jwoQJE6aLTHkBuQnSsyM1+yK5PQA0bPJiwoQJE6aPZGoX17Z62/brrFRuE4h27IoJEyZMmO4yJdvLlzUbMbYF6maAumpkY8KECROms0xPBez8O7PyuO1Y5y+gSAswYcKECdMppk3wfqo1vDmakwxW2/C/6oJjwoQJE6aPZJo1TzelbJ52zEJ7coeCEhMmTJgwnWV6aki5Cf95eE4SgrzkrtExYcKECdNBpnZ7bUm8L31nI8/8kyhFwIQJEyZMZ5naoWa+yX3gb1OT9g6bQSkmTJgwYbrF1Ibkdhg5C7SbMeeGdbggTJgwYcJ0hCkvO2cF6qbZ+jeaxUU7GBMmTJgwnWVKCDZweYN1f0w2SU02iREmTJgwYbrI1A4a24K2LYw3r6pdc5JkYMKECROm78G0aezuCTZDx9n629QEEyZMmDBdZMoDedsYza9NUjJr1+bE//4rJkyYMGE6y7QpO2fFZ/usWRKwbyvvWuWYMGHChOlTmNrCdTa83BSl+XP3ScnLXWDChAkTpm/KtDkuMys4899uXkndaMaECRMmTGeZ2hJ3E7yLdmq56FkjeP8CMGHChAnT5zO1im1wTaDb9KII1eXBoJf3x4QJEyZMZ5lmATVvkrZDyrZ8nRXJ+X8FTJgwYcL0PZjqtuZoPNmmF8knyS7ykjtaOSZMmDBhOsW0OY7TtmVnB2ja7eWvP08jMGHChAnTXaY8zOfhf1MSJ2XtpiZ9+MgOJkyYMGH6eKZ86DhrDW+u2SbbZnT0IjFhwoQJ03GmWUDdl6x5QpAf/WmznseavJgwYcKE6SxTwpEH+PxuSTmdvIDZyv/3TUyYMGHC9I2YNodjZqBJcpCnFMlv22IeEyZMmDB9D6bZtp9ttm5eUo5bN7UxYcKECdNZpnZI2R6UaZOAtvDeDEE338SECRMmTFeYNodp8oVuiue2WG0TgqhxjAkTJkyYzjLtA/MmYubFZ56mtAPOWRMZEyZMmDDdYpptqQ3GbXoxo8yb1G0LGxMmTJgwXWfKA2fSfn2s61w+/bEi9vfnYsKECROmH8mU/GrWik1Anw38f2j+YsKECROmH8yUbOZ9kM7/3sMNx6iYMGHChOk40yZg7xvE+23vjx/94WVgwoQJE6azTJs266ZAbZeevJ5k/e1vMWHChAnTWaZ/AHKf3j/EHJScAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

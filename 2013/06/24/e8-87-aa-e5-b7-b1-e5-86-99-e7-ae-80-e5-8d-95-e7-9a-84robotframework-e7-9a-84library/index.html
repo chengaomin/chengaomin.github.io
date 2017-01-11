@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>自己写简单的RobotFramework的Library | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="RFS,Robot Framework,Library,RF">
+    <meta name="description" content="在实际的工作中，肯定会发现有些功能RF自身的Library，或者第三方的Library都无法实现，这个时候我们就得自己写library来实现它了。
+不要想的太复杂，太难，其实很简单。
+下面我们举例子来演示吧
+一.编写Library你有3个方法，要自己写library
+1：公式：(a+b)的a次方，a，b是正整数
+2：有一网址（字符串），http://www.example.com?ip=192.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己写简单的RobotFramework的Library">
+<meta property="og:url" content="http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在实际的工作中，肯定会发现有些功能RF自身的Library，或者第三方的Library都无法实现，这个时候我们就得自己写library来实现它了。
+不要想的太复杂，太难，其实很简单。
+下面我们举例子来演示吧
+一.编写Library你有3个方法，要自己写library
+1：公式：(a+b)的a次方，a，b是正整数
+2：有一网址（字符串），http://www.example.com?ip=192.1">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary01.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary02.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary03.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary04.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary05.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary06.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.374Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己写简单的RobotFramework的Library">
+<meta name="twitter:description" content="在实际的工作中，肯定会发现有些功能RF自身的Library，或者第三方的Library都无法实现，这个时候我们就得自己写library来实现它了。
+不要想的太复杂，太难，其实很简单。
+下面我们举例子来演示吧
+一.编写Library你有3个方法，要自己写library
+1：公式：(a+b)的a次方，a，b是正整数
+2：有一网址（字符串），http://www.example.com?ip=192.1">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary01.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">自己写简单的RobotFramework的Library</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">自己写简单的RobotFramework的Library</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-06-24T06:29:48.000Z" itemprop="datePublished" class="page-time">
+  2013-06-24
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一-编写Library"><span class="post-toc-number">1.</span> <span class="post-toc-text">一.编写Library</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二-放置位置及导入"><span class="post-toc-number">2.</span> <span class="post-toc-text">二.放置位置及导入</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三-确认导入成功"><span class="post-toc-number">3.</span> <span class="post-toc-text">三.确认导入成功</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四，使用library"><span class="post-toc-number">4.</span> <span class="post-toc-text">四，使用library</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#五-查看结果"><span class="post-toc-number">5.</span> <span class="post-toc-text">五.查看结果</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">自己写简单的RobotFramework的Library</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013年06月24日 14:29" datetime="2013-06-24T06:29:48.000Z"  itemprop="datePublished">2013-06-24</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在实际的工作中，肯定会发现有些功能RF自身的Library，或者第三方的Library都无法实现，这个时候我们就得自己写library来实现它了。</p>
+<p>不要想的太复杂，太难，其实很简单。</p>
+<p>下面我们举例子来演示吧</p>
+<h2 id="一-编写Library"><a href="#一-编写Library" class="headerlink" title="一.编写Library"></a>一.编写Library</h2><p>你有3个方法，要自己写library</p>
+<p>1：公式：(a+b)的a次方，a，b是正整数</p>
+<p>2：有一网址（字符串），<a href="http://www.example.com?ip=192.187.111.198&amp;code=12345&amp;name=cat，想得到ip内容，即192.187.111.198" target="_blank" rel="external">http://www.example.com?ip=192.187.111.198&amp;code=12345&amp;name=cat，想得到ip内容，即192.187.111.198</a></p>
+<p>3：（用户名+10位随机数+一个key）进行md5加密</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary01.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary01.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary01.png</div>
+            </figure></p>
+<p>比如我这样子已经写好了，编译调试一下，确保自己没有错误哦。若是有错误，导入RF会失败哦。</p>
+<p>然后，将这个文件保存的文件名要和这个class的类名一样，所以我把他保存成MyLibrary.py</p>
+<a id="more"></a>
+<h2 id="二-放置位置及导入"><a href="#二-放置位置及导入" class="headerlink" title="二.放置位置及导入"></a>二.放置位置及导入</h2><p>最后，我们把这个文件放在了RF项目的同一目录下，即可</p>
+<p>如果你放在其他地方，也是可以的，但是导入的时候，地址要写对哦</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary02.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary02.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary02.png</div>
+            </figure></p>
+<p>来到RF中，我们导入它（记得写.py哦）</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary03.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary03.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary03.png</div>
+            </figure></p>
+<h2 id="三-确认导入成功"><a href="#三-确认导入成功" class="headerlink" title="三.确认导入成功"></a>三.确认导入成功</h2><p>按F5，是不是看到自己写的那些关键字了？而且还有自己的中文注解哦</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary04.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary04.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary04.png</div>
+            </figure></p>
+<h2 id="四，使用library"><a href="#四，使用library" class="headerlink" title="四，使用library"></a>四，使用library</h2><p>使用这3个关键字，我们跑一下</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary05.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary05.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary05.png</div>
+            </figure></p>
+<h2 id="五-查看结果"><a href="#五-查看结果" class="headerlink" title="五.查看结果"></a>五.查看结果</h2><p>运行结果</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary06.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary06.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/06/mylibrary06.png</div>
+            </figure></p>
+<p>想了解更多关于自己写library内容，可以查看官方文档<a href="http://robotframework.googlecode.com/hg/doc/userguide/RobotFrameworkUserGuide.html?r=2.8.1#creating-test-libraries" target="_blank" rel="external">http://robotframework.googlecode.com/hg/doc/userguide/RobotFrameworkUserGuide.html?r=2.8.1#creating-test-libraries</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.374Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/" target="_blank" rel="external">http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Library/">Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RF/">RF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFS/">RFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/&title=《自己写简单的RobotFramework的Library》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/&title=《自己写简单的RobotFramework的Library》 — Hexo&source=在实际的工作中，肯定会发现有些功能RF自身的Library，或者第三方的Library都无法实现，这个时候我们就得自己写library来实现它了。
+不要想..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《自己写简单的RobotFramework的Library》 — Hexo&url=http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">简单验证码识别思路与实现[第一步:去噪]</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library" data-title="自己写简单的RobotFramework的Library" data-url="http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/&title=《自己写简单的RobotFramework的Library》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/&title=《自己写简单的RobotFramework的Library》 — Hexo&source=在实际的工作中，肯定会发现有些功能RF自身的Library，或者第三方的Library都无法实现，这个时候我们就得自己写library来实现它了。
+不要想..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《自己写简单的RobotFramework的Library》 — Hexo&url=http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD4ElEQVR42u3aS27jQAwFwNz/0pltgInkR76WkwCllWEYEru0oPn5+Iivzy/X12+uPn/95v/vr+52fyV3u4rq8IUDBw4cOOKj7sJNyKY097/Pv8/jx4EDBw4cZzmugr5PpfeJsEnSl+He5sfdi8GBAwcOHD/LkRwpKaKa++fpGQcOHDhw/H6OXTNulzinxRsOHDhw4Pg9HHnDLhkFNazT2PqxFg4cOHDgOMuxa739rc+P7HfgwIEDB45hGsuTbrJ8kDx9GvNubeLydDhw4MCB40yiiBLS+KarhmCS5hPK/Lk4cODAgeMsRz6waRp/u7KwaR0uXwYOHDhw4Kg5zibaftSU3Cc/8LQsxIEDBw4cPUf++P4AuxWEpsAbE+PAgQMHjkMcZ0c49xDTom63+pa0Cy+7pDhw4MCBo+DIA0qCSIq3KfQObtegxIEDBw4cPUcSYp6S88Pfh5sXe9M3/yIqHDhw4MBxiGM6IsoTW/55uXxQbCPgwIEDB47nOHYDm34FYTqUagq56J44cODAgaPmaNYOnkjJzTApJ3uRmHHgwIEDR8GRt9vywyRNxryZOD38seYgDhw4cOBYceSPn7bnpksPuxezK+Rw4MCBA8fTHM2wZ/rg6ehoWlg2rw0HDhw4cJzi2CWtXTOxuc+u8TdN2zhw4MCB42mOs6sM+WGmSXf3+QUKDhw4cOAoON6zppAkwmlJtkvky9oUBw4cOHAcGvnv+HaHfGdzEAcOHDhwnOWYLiLsNiOSFbo8cTYxD06HAwcOHDhWHNN2XpOV+jW4JM68pPzmKThw4MCBo+Zomnp9n60BGh9yV7zhwIEDB456H2zatmvGS0nQzVpe0nB8UcjhwIEDB44hxy4dJgfYLUmcGlAtF+9w4MCBA8dRjl0JlN8hSZZ583Ga/qMT4cCBAweOBzjyhLdrJu6O1KTzhB4HDhw4cJziSB6/m8gkaXJa4OWFXzX0woEDBw4cRzmmaWm6yjaFmzYKDwy9cODAgQNHwXH/4Ccgpu3IwV7Gqpz7pqLFgQMHDhw1x27Y83TJl4+78tWKF0/EgQMHDhw1x2AYE68OTMdXSYifw2tX7OHAgQMHjp6jf0zTjMuHTE3jbxA/Dhw4cOCoOZqlhGodLUjbU8S85Ov/BODAgQMHjnuO5KjJ0sNu2PNEyTdNtDhw4MCB4wmOaaLKC6emeZcUeB+r6/Jl48CBAweOt3Pk6wV5essT8LSwzEtKHDhw4MDxsxzJ8aYtwjz15ncYvzYcOHDgwHGIY5qudsEl4Z5tRI5PgQMHDhw4ao4m6KTcmga0W5LL/xZM/0bgwIEDB474RP8A+fAqXPrXYUQAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

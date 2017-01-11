@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Robot Framework中使用DatabaseLibrary来连接数据库(MySQL) | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="RFS,Robot Framework,Database Library">
+    <meta name="description" content="当初自己想用RF来连接数据库查询的时候，网络上查询了一番，发现只有一篇文章，是连接Oracle的。
+如果你想操作Oracle，那就去看看吧,地址：http://blog.sina.com.cn/s/blog_654c6ec70100u9fr.html
+如果你想连接MySQL 和 SQLServer的话，那么请继续往下看吧
+1.安装DatabaseLibrary
+在RF的官网上，有DatabaseL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)">
+<meta property="og:url" content="http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="当初自己想用RF来连接数据库查询的时候，网络上查询了一番，发现只有一篇文章，是连接Oracle的。
+如果你想操作Oracle，那就去看看吧,地址：http://blog.sina.com.cn/s/blog_654c6ec70100u9fr.html
+如果你想连接MySQL 和 SQLServer的话，那么请继续往下看吧
+1.安装DatabaseLibrary
+在RF的官网上，有DatabaseL">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/DatabaseLibrary.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/mysql1.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/mysql2.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)">
+<meta name="twitter:description" content="当初自己想用RF来连接数据库查询的时候，网络上查询了一番，发现只有一篇文章，是连接Oracle的。
+如果你想操作Oracle，那就去看看吧,地址：http://blog.sina.com.cn/s/blog_654c6ec70100u9fr.html
+如果你想连接MySQL 和 SQLServer的话，那么请继续往下看吧
+1.安装DatabaseLibrary
+在RF的官网上，有DatabaseL">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/DatabaseLibrary.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2012-12-04T13:30:20.000Z" itemprop="datePublished" class="page-time">
+  2012-12-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2012年12月04日 21:30" datetime="2012-12-04T13:30:20.000Z"  itemprop="datePublished">2012-12-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>当初自己想用RF来连接数据库查询的时候，网络上查询了一番，发现只有一篇文章，是连接Oracle的。</p>
+<p>如果你想操作Oracle，那就去看看吧,地址：<a href="http://blog.sina.com.cn/s/blog_654c6ec70100u9fr.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_654c6ec70100u9fr.html</a></p>
+<p>如果你想连接MySQL 和 SQLServer的话，那么请继续往下看吧</p>
+<p><strong>1.安装DatabaseLibrary</strong></p>
+<p>在RF的官网上，有DatabaseLibrary的链接，DatabaseLibrary有2个版本，Python和Java版</p>
+<p>本人用的是Python版，下载地址：<a href="http://franz-see.github.com/Robotframework-Database-Library/" target="_blank" rel="external">http://franz-see.github.com/Robotframework-Database-Library/</a></p>
+<p>安装方法上面也写的很清楚，我再重复一下吧</p>
+<p>如果你下载的右上角的ZIP包的话，请随意解压缩，然后在命令行，cd到此文件夹下，然后python setup.py install，就ok了</p>
+<p>如果你安装的ActivePython的话，你可以不用下载东西，直接在命令行打入pip install robotframework-databaselibrary 自动下载安装完成</p>
+<p>验证按照是否完成：请看我上一篇博文，和验证Selenium2Library一样，去把DatabaseLibrary加入Library内，然后按F5，看是否出现</p>
+<p>如下图</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/DatabaseLibrary.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/DatabaseLibrary.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/DatabaseLibrary.png</div>
+            </figure></p>
+<p>Import的时候，请注意大小写哦！</p>
+<a id="more"></a>
+<p><strong>2.安装MySQL的Database Interfaces</strong></p>
+<p>在这里：<a href="http://wiki.python.org/moin/DatabaseInterfaces" target="_blank" rel="external">http://wiki.python.org/moin/DatabaseInterfaces</a> 有许多的DatabaseInterface</p>
+<p>您可以选择你想要的，比如我下载个MySQL的Interface吧，地址：<a href="https://github.com/petehunt/PyMySQL" target="_blank" rel="external">https://github.com/petehunt/PyMySQL</a></p>
+<p>点上方的ZIP下载源码，之后解压出来，命令行进入此目录，运行 python setup.py install 即可</p>
+<p>好了，如何使用？待会儿讲，我们再安装SQLServer的Database Interfaces</p>
+<p><strong>3.安装SQLServer的Database Interfaces</strong></p>
+<p>我下载的是：<a href="http://code.google.com/p/pyodbc/downloads/list" target="_blank" rel="external">http://code.google.com/p/pyodbc/downloads/list</a> 请下载对应的版本</p>
+<p>直接安装就ok了，一闪而过</p>
+<p><strong>4.使用DatabaseLibrary连接并操作MySQL</strong></p>
+<p><table id="keyword" border="1"></table></p>
+<p><tbody></tbody></p>
+<p><tr></tr></p>
+<p><td>Connect To Database Using Custom Params</td></p>
+<p><td>pymysql</td></p>
+<p><td>host=’127.0.0.1’, port=3306, user=’root’, passwd=’’, db=’test’</td><br></p>
+<p><tr></tr></p>
+<p><td>${a}</td></p>
+<p><td>query</td></p>
+<p><td>select * from table1</td><br></p>
+<p><tr></tr></p>
+<p><td>Disconnect From Database</td></p>
+<p><td></td></p>
+<p><td></td><br><br><br><br>好了，先看看我的table1</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/mysql1.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/mysql1.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/mysql1.png</div>
+            </figure></p>
+<p>再看看运行之后的结果吧</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/mysql2.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/mysql2.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/mysql2.png</div>
+            </figure></p>
+<p>我们发现，中文都显示成了“？？”，咋办？？ 办法肯定有，转码。</p>
+<p><strong><span style="color: #ff0000;">其实刚刚前面装的pyodbc也可以连接mysql哦，而且对中文不会出现“？？”的现象哦</span></strong></p>
+<p><strong><span style="color: #ff0000;">好吧，我们明天再继续讲SQLServer和处理中文的问题吧</span></strong></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.353Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/" target="_blank" rel="external">http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database-Library/">Database Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFS/">RFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/&title=《Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/&title=《Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)》 — Hexo&source=当初自己想用RF来连接数据库查询的时候，网络上查询了一番，发现只有一篇文章，是连接Oracle的。
+如果你想操作Oracle，那就去看看吧,地址：http..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)》 — Hexo&url=http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2012/12/05/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93sqlservermysql/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Robot Framework中使用DatabaseLibrary来连接数据库(SQLServer+MySQL)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Robot Framework + Selenium2Library 安装</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql" data-title="Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)" data-url="http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/&title=《Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/&title=《Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)》 — Hexo&source=当初自己想用RF来连接数据库查询的时候，网络上查询了一番，发现只有一篇文章，是连接Oracle的。
+如果你想操作Oracle，那就去看看吧,地址：http..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)》 — Hexo&url=http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEk0lEQVR42u3ay27jOBAF0Pz/T2c2s2ggiXNvFRsQ3UerQJZp8TAA68GPj/j6/OP6eufr9dMzP435+rt/3vk6Qv6GP41z7MKECRMmTI9kaiecTPL1xJIJv37DzYTbxcaECRMmTO/BlAzX4ra7avLd5O988ZK5Y8KECRMmTEmq3L5onngnIUieTmPChAkTJkx5ibbly1PWTaEZEyZMmDD9m0z5cPtXacu4SdLb9iL/Yi0cEyZMmDA9jGnWAnyPv//K+SZMmDBhwvQYps/yyouweejw+v4mFZ/N8ZtxMGHChAnTtUyzhmKb1m7Ku20BNy8Ntw1UTJgwYcJ0I9OxzfLo9PLfysfJj/sciJswYcKECdPDmPLCbj6xWTqav0N7xKdtyn7kEQQmTJgwYXowU1ui3RRw90l1ksomgcjs+BEmTJgwYbqXKX8oSR33bctZ8zJ/t3z8OqfHhAkTJkwPZpo1IPeF4M3vtqPtlx8TJkyYMN3I1DYCXyeTs9BhNtW87DubXbQymDBhwoTp8UyzF8pxz6ageZF30878BQsTJkyYMF3CtElTN03QWZOyTWj3y/P/fUyYMGHC9EZMeSiQJ8Ztynr2yfZf4ZvnMWHChAnT5UyzdmMbFuTQbXG2PTBUl6cxYcKECdO1TJvS56mGYlIIbj+dHdYpur6YMGHChOkSpqRZmBd2Z0+2lJuDRAloUeHGhAkTJkyXMOVHYfYpZfu7+WLkheB6TEyYMGHC9EZMbRKbBwT7VHkzTvLkL6kvJkyYMGF6O6a2SPp6W52Vkvcl3QNla0yYMGHCdDnTJomdJaLJtNvWY8tRBECYMGHChOlapk2rb9NinAUEZ5nqQjMmTJgwYbqcaV8w3bRF8+M7eeiwL15nNWBMmDBhwvR0ps2xmHzDzrPItg2ZsL6+ioXEhAkTJkwXMs025nZiCeJm48+T82OhACZMmDBhejzTpgGZp9B50zTZ1NtZtJ9+8zwmTJgwYXpTptlhnX14ceyozak6LSZMmDBhejum/NjN5luzwzp56/R1CJIsPCZMmDBheiemtvyabP8zygR6Vuptk3BMmDBhwnQ7U4KVQLT0bRP0VHl3tgyYMGHChOlephlBsn0mW3hbcm2LyPsjSh/5VDFhwoQJ0yOZZpvuZhpJKLAp+M7eNgqAMGHChAnThUx5oTMJDvIUtE2S9yHCZhkwYcKECdO9TLNuXcvRthXbVuUmoEneARMmTJgw3cs0a2G2BdN2Yu2hov13o9QXEyZMmDBdztRuovu0Ng8O9mXiNsHGhAkTJkzvwdQeuGlLqLMibNJqbRdy9ruYMGHChOl2ps/y2oQOp1LifQG3DnEwYcKECdO1TPuNuZ1A3uCchSntIaSz4QsmTJgwYXomU76tnmo3zlLufUG5HQcTJkyYML0T06mNM08sN+FIXobeHEX6ptSLCRMmTJj+AaZTJdF8s58luu1SHQ4IMGHChAnT5Uztxj8jmB1gbQ/IRvcxYcKECdPlTJvjL5vWY9LszFPxzTGdXxYDEyZMmDBdy3Q2Tc2n/fp+Qpa3YHPW1YUJEyZMmJ7F9B+oOXeY+YUBSgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

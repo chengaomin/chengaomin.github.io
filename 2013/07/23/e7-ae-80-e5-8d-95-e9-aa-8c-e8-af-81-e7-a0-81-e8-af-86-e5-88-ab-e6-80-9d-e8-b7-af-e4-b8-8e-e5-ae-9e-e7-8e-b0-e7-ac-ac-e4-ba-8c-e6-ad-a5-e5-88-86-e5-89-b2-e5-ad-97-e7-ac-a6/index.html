@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>简单验证码识别思路与实现[第二步:分割字符] | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="验证码 验证码识别 验证码去噪 验证码分割 验证码算法">
+    <meta name="description" content="分割字符
+这块也是验证码识别的难点，我这里还是介绍2种最简单的分割算法（1.固定分割/平均分割 2.扫描线分割法）
+当然咯，只适用于简单的，验证码字符没有粘连的情况咯
+1.固定分割/平均分割原理很简单，以上次的这个验证码为例
+[">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单验证码识别思路与实现[第二步:分割字符]">
+<meta property="og:url" content="http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="分割字符
+这块也是验证码识别的难点，我这里还是介绍2种最简单的分割算法（1.固定分割/平均分割 2.扫描线分割法）
+当然咯，只适用于简单的，验证码字符没有粘连的情况咯
+1.固定分割/平均分割原理很简单，以上次的这个验证码为例
+[">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/7.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/11.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/21.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/31.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/41.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/51.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/61.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/71.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/8.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/9.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/10.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单验证码识别思路与实现[第二步:分割字符]">
+<meta name="twitter:description" content="分割字符
+这块也是验证码识别的难点，我这里还是介绍2种最简单的分割算法（1.固定分割/平均分割 2.扫描线分割法）
+当然咯，只适用于简单的，验证码字符没有粘连的情况咯
+1.固定分割/平均分割原理很简单，以上次的这个验证码为例
+[">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/7.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">简单验证码识别思路与实现[第二步:分割字符]</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">简单验证码识别思路与实现[第二步:分割字符]</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-07-23T06:03:46.000Z" itemprop="datePublished" class="page-time">
+  2013-07-23
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-固定分割-平均分割"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.固定分割/平均分割</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-扫描线分割法"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.扫描线分割法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#支持就转发或关注我一下呗"><span class="post-toc-number"></span> <span class="post-toc-text">支持就转发或关注我一下呗</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#（登录后可转发）"><span class="post-toc-number">0.1.</span> <span class="post-toc-text">（登录后可转发）</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">简单验证码识别思路与实现[第二步:分割字符]</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013年07月23日 14:03" datetime="2013-07-23T06:03:46.000Z"  itemprop="datePublished">2013-07-23</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>分割字符</p>
+<p>这块也是验证码识别的难点，我这里还是介绍2种最简单的分割算法（1.固定分割/平均分割 2.扫描线分割法）</p>
+<p>当然咯，只适用于简单的，验证码字符没有粘连的情况咯</p>
+<h2 id="1-固定分割-平均分割"><a href="#1-固定分割-平均分割" class="headerlink" title="1.固定分割/平均分割"></a>1.固定分割/平均分割</h2><p>原理很简单，以上次的这个验证码为例</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/7.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/7.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/7.png</div>
+            </figure></p>
+<p>观察发现每个验证码的字符的横坐标位置是不变的，每次都是[15,45,75,105]开始的，而纵坐标是会随便变动的，会上下跳动，我们不管他，直接用横坐标来平均分割一下。再去观察一下每个字符的宽度，发现最大10个像素。</p>
+<p>代码：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/11.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/11.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/11.png</div>
+            </figure></p>
+<p>处理后的结果：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/21.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/21.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/21.png</div>
+            </figure></p>
+<p>这样切割，字符是出来了，但是字符在这个小空间内的上下位置，是不定的，这对于我们后面匹配时，就会带来一点点麻烦。比较的时候，要纵向全部去匹配一遍。于是我们引入扫描线分割法</p>
+<h2 id="2-扫描线分割法"><a href="#2-扫描线分割法" class="headerlink" title="2.扫描线分割法"></a>2.扫描线分割法</h2><p>我们的目的是完美的切割出每一个字符，效果最好如下图</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/31.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/31.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/31.png</div>
+            </figure></p>
+<p>算法描述：</p>
+<p>首先是对X方向上的所有列进行扫描，只要纵向上有黑色的点，就累计记录下。大概如下图</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/41.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/41.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/41.png</div>
+            </figure></p>
+<p>我们得到这个验证码图像长度相同的一个list，[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 6, 4, 4, 4, 4, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 9, 4, 4, 4, 7, 6, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 2, 2, 2, 4, 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 7, 3, 2, 2, 2, 9, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]</p>
+<p>我们很容易的知道，连续的0，说明是空白，连续的数字出现，就是字符的左右边界。于是我们得到了4个字符的左右边界，分别是 [15, 23], [45, 53], [75, 83], [105, 113]</p>
+<p>大概这时候就是下图这样了</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/51.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/51.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/51.png</div>
+            </figure></p>
+<p>然后我们开始在y方向上进行扫描，确定出每个字母的上下边界，方法类似，不过这次不是整个图像的扫描，而是从刚刚扫描出的4个空间里扫描，先扫描第一个字符，如下图</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/61.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/61.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/61.png</div>
+            </figure></p>
+<p>我们得到这个验证码图像高度相同的一个list，[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 4, 4, 4, 4, 4, 4, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]</p>
+<p>很容易的就找出了连续数字开始和结束的地方就是这个字符的边界了，</p>
+<p>此时，我们就知道了这个字符的4个边界了</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/71.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/71.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/71.png</div>
+            </figure></p>
+<p>至此，这个字符就已经被完美的“分割”出来了，其他的3个字符也能这样分割出来</p>
+<p>最后得到了4个字符的边界存入list [[15, 23, 17, 27], [45, 53, 15, 24], [75, 83, 26, 35], [105, 113, 20, 29]]</p>
+<p>下面我们就能容易的分割出来了，crop即可。</p>
+<p>核心代码：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/8.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/8.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/8.png</div>
+            </figure></p>
+<p>处理结果：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/9.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/9.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/9.png</div>
+            </figure></p>
+<p>完美了？！</p>
+<p>其实这样还是不够完美，为什么？？</p>
+<p>因为这样分割出来的字符，他们的宽度和高度不一样，有的7<em>8，有的8</em>10，有的10<em>9，这将给我们后面最匹配带来障碍，于是我又对他们做了放大缩小处理，让他们都变成20</em>20的大小，虽然大小变了，但是他们的特征是没有改变的。</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/10.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/10.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/10.png</div>
+            </figure></p>
+<p>Okay！这次的分割字符就这样了。</p>
+<p>下次可能是介绍如何自己制作字库！敬请期待！</p>
+<p>（有机会会介绍python的ocr来识别，以及如何训练ocr）</p>
+<h1 id="支持就转发或关注我一下呗"><a href="#支持就转发或关注我一下呗" class="headerlink" title="支持就转发或关注我一下呗"></a>支持就转发或关注我一下呗</h1><p>&nbsp;</p>
+<h3 id="（登录后可转发）"><a href="#（登录后可转发）" class="headerlink" title="（登录后可转发）"></a>（登录后可转发）</h3>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.369Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/" target="_blank" rel="external">http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/验证码-验证码识别-验证码去噪-验证码分割-验证码算法/">验证码 验证码识别 验证码去噪 验证码分割 验证码算法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/&title=《简单验证码识别思路与实现[第二步:分割字符]》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/&title=《简单验证码识别思路与实现[第二步:分割字符]》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单验证码识别思路与实现[第二步:分割字符]》 — Hexo&url=http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2013/07/27/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-89-e6-ad-a5-e5-88-b6-e4-bd-9c-e5-ad-97-e5-ba-93/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">简单验证码识别思路与实现[第三步:制作字库]</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">简单验证码识别思路与实现[第一步:去噪]</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6" data-title="简单验证码识别思路与实现[第二步:分割字符]" data-url="http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/&title=《简单验证码识别思路与实现[第二步:分割字符]》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/&title=《简单验证码识别思路与实现[第二步:分割字符]》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单验证码识别思路与实现[第二步:分割字符]》 — Hexo&url=http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,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" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

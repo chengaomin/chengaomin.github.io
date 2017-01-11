@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Robot Framework中使用HttpLibrary教程and中文支持 | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="RFS,Robot Framework,HttpLibrary">
+    <meta name="description" content="好懒，好久没有更新过了，呼呼。。。
+今天更新一篇吧，教大家在RF中如何安装HttpLibrary和使用他
+为什么要用到这个库？？
+主要是因为我公司的一些项目需求。
+举一个例子吧
+[
+                
+                    
+                    
+                
+                ](http://cgmblog-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Robot Framework中使用HttpLibrary教程and中文支持">
+<meta property="og:url" content="http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="好懒，好久没有更新过了，呼呼。。。
+今天更新一篇吧，教大家在RF中如何安装HttpLibrary和使用他
+为什么要用到这个库？？
+主要是因为我公司的一些项目需求。
+举一个例子吧
+[
+                
+                    
+                    
+                
+                ](http://cgmblog-">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/energy_meitu_2.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/import.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/case.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/result.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.355Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Robot Framework中使用HttpLibrary教程and中文支持">
+<meta name="twitter:description" content="好懒，好久没有更新过了，呼呼。。。
+今天更新一篇吧，教大家在RF中如何安装HttpLibrary和使用他
+为什么要用到这个库？？
+主要是因为我公司的一些项目需求。
+举一个例子吧
+[
+                
+                    
+                    
+                
+                ](http://cgmblog-">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/energy_meitu_2.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Robot Framework中使用HttpLibrary教程and中文支持</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Robot Framework中使用HttpLibrary教程and中文支持</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-01-09T12:58:17.000Z" itemprop="datePublished" class="page-time">
+  2013-01-09
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1安装HttpLibrary"><span class="post-toc-number">1.</span> <span class="post-toc-text">1安装HttpLibrary</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2修改编码"><span class="post-toc-number">2.</span> <span class="post-toc-text">2修改编码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3使用HTTPLibrary"><span class="post-toc-number">3.</span> <span class="post-toc-text">3使用HTTPLibrary</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Robot Framework中使用HttpLibrary教程and中文支持</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013年01月09日 20:58" datetime="2013-01-09T12:58:17.000Z"  itemprop="datePublished">2013-01-09</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>好懒，好久没有更新过了，呼呼。。。</p>
+<p>今天更新一篇吧，教大家在RF中如何安装HttpLibrary和使用他</p>
+<p>为什么要用到这个库？？</p>
+<p>主要是因为我公司的一些项目需求。</p>
+<p>举一个例子吧</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/energy_meitu_2.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/energy_meitu_2.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/energy_meitu_2.png</div>
+            </figure></p>
+<a id="more"></a>
+<p>看红色框中的曲线图，他是用highchart的js显示出来的，而他每个点的数据是ajax请求另一个方法得到的</p>
+<p>so，我想用selenium2library从页面上获取，就比较困难了，起码我自己没有找到好办法（如何你有，可以下面回复我）</p>
+<p>然后我就用Selenium2Library来执行ajax，模拟同样的操作来获取到了这一串json，再显示在页面上，然后get text获取</p>
+<p>这不失为一种方法，我也这么运用了，有时间我也会分享这个方法</p>
+<p>今天看到这个httpLibrary的库，于是去试试，效果还不错，也很好的获取到了这个图的json，特来分享一下，也算是记录下，以后给自己看</p>
+<p>废话说的多了点，我们下面进入正题吧</p>
+<h2 id="1安装HttpLibrary"><a href="#1安装HttpLibrary" class="headerlink" title="1安装HttpLibrary"></a><strong>1安装HttpLibrary</strong></h2><p>so easy</p>
+<p>直接在命令行，输入</p>
+<p><pre>pip install –upgrade robotframework-httplibrary</pre><br>。。。<br>。。。<br>。。。</p>
+<p>看到Successfully installed robotframework-httplibrary了么？？</p>
+<p>ok，安装成功！</p>
+<h2 id="2修改编码"><a href="#2修改编码" class="headerlink" title="2修改编码"></a><strong>2修改编码</strong></h2><p>告诉你个小秘密，这个库不支持中文哦，那我们都是中国人，开发免不了会写几个中文进去，POST提交可能有中文</p>
+<p>那么我们就修改一个源码，使其支持中文呗</p>
+<p>打开\Python27\Lib\site-packages\HttpLibrary</p>
+<p>看到2个py文件，把其他pyc文件删除</p>
+<p>打开2个py文件，分别加入</p>
+<blockquote>
+<p><pre>import sys</pre></p>
+<p>reload(sys)</p>
+<p>sys.setdefaultencoding(‘utf8’)<br>就ok了</p>
+</blockquote>
+<h2 id="3使用HTTPLibrary"><a href="#3使用HTTPLibrary" class="headerlink" title="3使用HTTPLibrary"></a><strong>3使用HTTPLibrary</strong></h2><p>先在Library处，来Import一下</p>
+<p>要这样写 Import HttpLibrary.HTTP</p>
+<p>如图</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/import.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/import.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/import.png</div>
+            </figure></p>
+<p>然后写段case吧</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/case.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/case.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/case.png</div>
+            </figure></p>
+<p>执行一下吧，成功登陆了吧，而且支持post内容为中文了吧</p>
+<p>再看看里面这个库，还有一些其他关键字，然后发现一些json的关键字，很好用</p>
+<p>因为我前面那个曲线图，返回的就是json，用里面的关键字处理json，方便了</p>
+<p>看我示范一下</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/result.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/result.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/result.png</div>
+            </figure></p>
+<p>好了，其他的关键字，待你自己发掘吧！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.355Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/" target="_blank" rel="external">http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HttpLibrary/">HttpLibrary</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFS/">RFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/&title=《Robot Framework中使用HttpLibrary教程and中文支持》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/&title=《Robot Framework中使用HttpLibrary教程and中文支持》 — Hexo&source=好懒，好久没有更新过了，呼呼。。。
+今天更新一篇吧，教大家在RF中如何安装HttpLibrary和使用他
+为什么要用到这个库？？
+主要是因为我公司的一些项..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Robot Framework中使用HttpLibrary教程and中文支持》 — Hexo&url=http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Robot Framework中使用AtuoItLibrary教程</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2012/12/05/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93sqlservermysql/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Robot Framework中使用DatabaseLibrary来连接数据库(SQLServer+MySQL)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b" data-title="Robot Framework中使用HttpLibrary教程and中文支持" data-url="http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/&title=《Robot Framework中使用HttpLibrary教程and中文支持》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/&title=《Robot Framework中使用HttpLibrary教程and中文支持》 — Hexo&source=好懒，好久没有更新过了，呼呼。。。
+今天更新一篇吧，教大家在RF中如何安装HttpLibrary和使用他
+为什么要用到这个库？？
+主要是因为我公司的一些项..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Robot Framework中使用HttpLibrary教程and中文支持》 — Hexo&url=http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKUlEQVR42u3ay27CQAwFUP7/p+m2UptwbQeJmJMVasPMnGFh+fF4xM/z13P+9+ef53zNZMfJOqMHGxsb+ybs5+mTHOL8u+crJN/9yzv/HK2JjY2NvY4932Ye8Kqk8/dfGLGxsbG/nt0Le4UAU0xasLGxsbEny1XDWF6QOloTGxsbG7tXVEq2qR46P3qeulxcS8PGxsb+eHbeFf38z2/pb2NjY2N/MLtX9MnLQL1AclWb+XB3bGxs7EXsPADkIzXVon81Vaj+AIdvYmNjYy9iz1u8yZhOAk5GeeZNX2xsbOxN7PONq+3V3rHysNdrXbzIwLCxsbFXsKupQrJ9Lwjloz/Vy4pmlLCxsbFvyJ4kIb1glg8G9VoR1TCMjY2NvYOdh43qBU1av8mboxklbGxs7BXsaum/Wmaah7Tk5HkJ7J+iEjY2NvYi9rwNMGkY9IpTeTkMGxsbeyt7krTMB2h65aS8xdtsFWBjY2Pfil0tBlX/khwiX7kabqP+NjY2NvbN2XkzNVmod0F56pKUvfIfAxsbG3sHOwk8ecKQH/fd77y4JmxsbOyl7LwEPynl5ztWr7sw4oONjY29iF1d4qriTrWAlfc0kl2wsbGxN7Gr5aFqU7ZXEuqFq3xfbGxs7G9j54lKknLkR+xdVtSQwMbGxl7HnicbVVgS9qpNi0KIxcbGxl7EvrYANDl6Eq6S0lLhnNjY2NiL2PP2bYJ5x/Dl/BKxsbGx787upRy9YtAk7OXNgySkYWNjY29l9xoAvWCW7DVJb15cATY2NvYidmHMJQ54yX+r6+ehqxossbGxsXewJ0X5eQGoOtxz2ZvY2NjYX8CuFuJ7geraslFuwcbGxv4edi/w9FrF1STkET+HTQJsbGzsm7Ofxac3xNMrOVXfKTQGsLGxsRexqwFgfgW9IZ48EeqNHGFjY2PfnZ2nIvlB80DSK/f3khZsbGzs3ew8JUjSgN47vZZAfvXY2NjY2NXjVoNKtSExKTNhY2NjY1fDRt4qrq6ZnORwZAcbGxt7ETsf2cmLPr1gVk1d3t4ewMbGxv54dt7o7TVuq8Wm/CTzJjE2Njb2zdk/nfawvAhilpoAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

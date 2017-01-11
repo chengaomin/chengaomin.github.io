@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Robot Framework中使用AtuoItLibrary教程 | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="RFS,Robot Framework,AutoItLibrary">
+    <meta name="description" content="今天在公司使用Jenkins来做RF的集成时
+我发现用RIDE使用AutoItLibrary没有问题
+而用Jenkins中的RF插件执行case时，import这个AutoItLibrary库没有成功，导致无法识别其中的关键字
+于是回家用电脑一试，竟然没有发生公司的问题
+区别在于，公司64位电脑，家是32位的。
+而且64位电脑只安装AutoItLibrary是不行的，还有安装他的主程序AutoIt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Robot Framework中使用AtuoItLibrary教程">
+<meta property="og:url" content="http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="今天在公司使用Jenkins来做RF的集成时
+我发现用RIDE使用AutoItLibrary没有问题
+而用Jenkins中的RF插件执行case时，import这个AutoItLibrary库没有成功，导致无法识别其中的关键字
+于是回家用电脑一试，竟然没有发生公司的问题
+区别在于，公司64位电脑，家是32位的。
+而且64位电脑只安装AutoItLibrary是不行的，还有安装他的主程序AutoIt">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/lib.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/case1.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/cal.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Robot Framework中使用AtuoItLibrary教程">
+<meta name="twitter:description" content="今天在公司使用Jenkins来做RF的集成时
+我发现用RIDE使用AutoItLibrary没有问题
+而用Jenkins中的RF插件执行case时，import这个AutoItLibrary库没有成功，导致无法识别其中的关键字
+于是回家用电脑一试，竟然没有发生公司的问题
+区别在于，公司64位电脑，家是32位的。
+而且64位电脑只安装AutoItLibrary是不行的，还有安装他的主程序AutoIt">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/lib.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Robot Framework中使用AtuoItLibrary教程</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Robot Framework中使用AtuoItLibrary教程</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-01-10T12:19:10.000Z" itemprop="datePublished" class="page-time">
+  2013-01-10
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1安装AutoItLibrary"><span class="post-toc-number">1.</span> <span class="post-toc-text">1安装AutoItLibrary</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#i首先安装pywin32，地址：http-sourceforge-net-projects-pywin32-files-pywin32"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">i首先安装pywin32，地址：http://sourceforge.net/projects/pywin32/files/pywin32/</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ii然后安装AutoItLibrary，地址https-code-google-com-p-robotframework-autoitlibrary-downloads-list"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">ii然后安装AutoItLibrary，地址https://code.google.com/p/robotframework-autoitlibrary/downloads/list</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#iii安装AutoIt-V3，地址http-www-autoitscript-com-site-autoit-downloads"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">iii安装AutoIt V3，地址http://www.autoitscript.com/site/autoit/downloads/</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2使用AutoItLibrary"><span class="post-toc-number">2.</span> <span class="post-toc-text">2使用AutoItLibrary</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#i导入这个库，如图"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">i导入这个库，如图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ii写下如下case"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">ii写下如下case</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#iii运行一下，如果一切顺利，你应该会看到计算器出现"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">iii运行一下，如果一切顺利，你应该会看到计算器出现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-6"><a class="post-toc-link" href="#2013-01-11-更正：Jenkins的RF插件能在64位系统下使用AutoItLibrary了，是我的疏忽，没有安装pywin32。"><span class="post-toc-number">2.3.0.0.1.</span> <span class="post-toc-text">2013-01-11 更正：Jenkins的RF插件能在64位系统下使用AutoItLibrary了，是我的疏忽，没有安装pywin32。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Robot Framework中使用AtuoItLibrary教程</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013年01月10日 20:19" datetime="2013-01-10T12:19:10.000Z"  itemprop="datePublished">2013-01-10</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>今天在公司使用Jenkins来做RF的集成时</p>
+<p>我发现用RIDE使用AutoItLibrary没有问题</p>
+<p>而用Jenkins中的RF插件执行case时，import这个AutoItLibrary库没有成功，导致无法识别其中的关键字</p>
+<p>于是回家用电脑一试，竟然没有发生公司的问题</p>
+<p>区别在于，公司64位电脑，家是32位的。</p>
+<p>而且64位电脑只安装AutoItLibrary是不行的，还有安装他的主程序AutoIt V3</p>
+<p>好了，反正我是推荐大家使用32位的系统啦，64位总是会遇到一些莫名的错误，唉。。。</p>
+<p>上面那个问题，谁有解决方法的，记得告诉我，谢谢</p>
+<h2 id="1安装AutoItLibrary"><a href="#1安装AutoItLibrary" class="headerlink" title="1安装AutoItLibrary"></a>1安装AutoItLibrary</h2><h3 id="i首先安装pywin32，地址：http-sourceforge-net-projects-pywin32-files-pywin32"><a href="#i首先安装pywin32，地址：http-sourceforge-net-projects-pywin32-files-pywin32" class="headerlink" title="i首先安装pywin32，地址：http://sourceforge.net/projects/pywin32/files/pywin32/"></a>i首先安装pywin32，地址：<a href="http://sourceforge.net/projects/pywin32/files/pywin32/" target="_blank" rel="external">http://sourceforge.net/projects/pywin32/files/pywin32/</a></h3><p>去下载最新的对应版本吧，32位，64位，python版本，自己都看准了下载</p>
+<p>安装一下就ok</p>
+<a id="more"></a>
+<h3 id="ii然后安装AutoItLibrary，地址https-code-google-com-p-robotframework-autoitlibrary-downloads-list"><a href="#ii然后安装AutoItLibrary，地址https-code-google-com-p-robotframework-autoitlibrary-downloads-list" class="headerlink" title="ii然后安装AutoItLibrary，地址https://code.google.com/p/robotframework-autoitlibrary/downloads/list"></a>ii然后安装AutoItLibrary，地址<a href="https://code.google.com/p/robotframework-autoitlibrary/downloads/list" target="_blank" rel="external">https://code.google.com/p/robotframework-autoitlibrary/downloads/list</a></h3><p>下载之后解压缩，命令行进入此目录，打命令 python setup.py install （记得用管理员身份运行哦）</p>
+<p>如果你是32位系统，不用看第三步了，因为已经ok了</p>
+<h3 id="iii安装AutoIt-V3，地址http-www-autoitscript-com-site-autoit-downloads"><a href="#iii安装AutoIt-V3，地址http-www-autoitscript-com-site-autoit-downloads" class="headerlink" title="iii安装AutoIt V3，地址http://www.autoitscript.com/site/autoit/downloads/"></a>iii安装AutoIt V3，地址<a href="http://www.autoitscript.com/site/autoit/downloads/" target="_blank" rel="external">http://www.autoitscript.com/site/autoit/downloads/</a></h3><p>下载AutoIt V3，安装一下即可</p>
+<h2 id="2使用AutoItLibrary"><a href="#2使用AutoItLibrary" class="headerlink" title="2使用AutoItLibrary"></a>2使用AutoItLibrary</h2><h3 id="i导入这个库，如图"><a href="#i导入这个库，如图" class="headerlink" title="i导入这个库，如图"></a>i导入这个库，如图</h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/lib.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/lib.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/lib.png</div>
+            </figure></p>
+<h3 id="ii写下如下case"><a href="#ii写下如下case" class="headerlink" title="ii写下如下case"></a>ii写下如下case</h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/case1.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/case1.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/case1.png</div>
+            </figure></p>
+<h3 id="iii运行一下，如果一切顺利，你应该会看到计算器出现"><a href="#iii运行一下，如果一切顺利，你应该会看到计算器出现" class="headerlink" title="iii运行一下，如果一切顺利，你应该会看到计算器出现"></a>iii运行一下，如果一切顺利，你应该会看到计算器出现</h3><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/cal.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/cal.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/01/cal.png</div>
+            </figure></p>
+<p>好了，这样就安装OK了，至于这个AutoItLibrary库有什么作用</p>
+<p>可以结束进程啊，操纵window啊等等了，等你自己发掘吧！</p>
+<h6 id="2013-01-11-更正：Jenkins的RF插件能在64位系统下使用AutoItLibrary了，是我的疏忽，没有安装pywin32。"><a href="#2013-01-11-更正：Jenkins的RF插件能在64位系统下使用AutoItLibrary了，是我的疏忽，没有安装pywin32。" class="headerlink" title="2013-01-11 更正：Jenkins的RF插件能在64位系统下使用AutoItLibrary了，是我的疏忽，没有安装pywin32。"></a><span style="color: #ff0000;"><strong>2013-01-11 更正：Jenkins的RF插件能在64位系统下使用AutoItLibrary了，是我的疏忽，没有安装pywin32。</strong></span></h6>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.356Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/" target="_blank" rel="external">http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AutoItLibrary/">AutoItLibrary</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFS/">RFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/&title=《Robot Framework中使用AtuoItLibrary教程》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/&title=《Robot Framework中使用AtuoItLibrary教程》 — Hexo&source=今天在公司使用Jenkins来做RF的集成时
+我发现用RIDE使用AutoItLibrary没有问题
+而用Jenkins中的RF插件执行case时，imp..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Robot Framework中使用AtuoItLibrary教程》 — Hexo&url=http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用Jenkins自动执行Robot Framework中的case</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Robot Framework中使用HttpLibrary教程and中文支持</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b" data-title="Robot Framework中使用AtuoItLibrary教程" data-url="http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/&title=《Robot Framework中使用AtuoItLibrary教程》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/&title=《Robot Framework中使用AtuoItLibrary教程》 — Hexo&source=今天在公司使用Jenkins来做RF的集成时
+我发现用RIDE使用AutoItLibrary没有问题
+而用Jenkins中的RF插件执行case时，imp..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Robot Framework中使用AtuoItLibrary教程》 — Hexo&url=http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADI0lEQVR42u3awY7iQAwEUP7/p9nrSiNClZ2RoOflhHaySb/mYFzuxyO+nv9d1/9y/fnnM5M3/nxX/pzVhY2Njf0l7OfllbCTxSVbkCOvtzh6GjY2NvZx7OslXj86YSTV5N7Pb4zY2NjY2EGRmBWhHIONjY2NfS874W2CKmxsbGzsa3YSKl1vQQJut/gjsjRsbGzsj2fnU9HP//wr821sbGzsD2Y/y6v96T8rJMlQeaXAxsbGPojdBjdJDJTESbNhcN4IRfEWNjY29hHs9sDlXdF8Xhp/Yz3Y2NjYJ7HvCo8Sxj7KzxuSdiCNjY2N/b3s5JWbIre/f1PMXm4WNjY29kHsWWOwGbi2A4PNOOEx2w9sbGzsL2TPlpWHQUm0NFtJO1rAxsbGPo+dP2g4Qy5D/7bBGLqwsbGxj2YnwX0+Bmj/76xktuvHxsbGPo/dHrW5q3XJN24Wgb1cAzY2NvZB7HZBbaFKmocZvv1iHpvvARsbG/uD2ZujMG3e3h4J2h8eevkVYmNjYx/HTn7it3HSrFG56543b8fGxsY+jj0L8WdRzv4ts2L2sm5jY2NjH8GeHcGp4/hR9L9pk17ej42NjX0oO28bcsCMtDkAFI09sLGxsQ9ib0atCbjdylmk1W4ZNjY29knse8Oj9pBNe2c90G13FxsbG/sL2e0P/bYZaMF5QWoPD2FjY2P/HXb+uLx4zMCzIzvFJmJjY2Mfwc4XvWkY2mHtJjaKVoiNjY19ELv9ZZ63BHkx229uPioeNiTY2NjYH8/eh+9tazEbNtwVXWFjY2P/BXZbroZnhUYjh3w4/ebt2NjY2Mexk7DmOirKy+GsUM2OFmFjY2P/TXYe67dB/11/ba9oMICNjY39hexneSUlpw2MZkOIfDCAjY2NfTa7LQDX2zE7Otm2K/eWSWxsbOwz2Dlpsyl5fJ8PBlZDZWxsbOzj2Js4PmlI8mFDW7TyNgYbGxsbu2052vYgH1Ekz7xeJzY2Njb2PjBqm5CkLUk2AhsbG/tUdh79bw73tIVnduDy5iwNGxsb++PZ+aC3HQ/sj9rUZWl0JzY2NvbXsv8BZyZT7447P/gAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

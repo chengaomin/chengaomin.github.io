@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Tesseract-OCR的安装使用训练[1] | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="OCR,Tesseract-OCR,图像识别">
+    <meta name="description" content="什么是OCROCR（Optical Character Recognition，光学字符识别）是指电子设备（例如扫描仪或数码相机）检查纸上打印的字符，通过检测暗、亮的模式确定其形状，然后用字符识别方法将形状翻译成计算机文字的过程；即，对文本资料进行扫描，然后对图像文件进行分析处理，获取文字及版面信息的过程。OCR技术非常专业，一般多是印刷、打印行业的从业人员使用，可以快速的将纸质资料转换为电子资料">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tesseract-OCR的安装使用训练[1]">
+<meta property="og:url" content="http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是OCROCR（Optical Character Recognition，光学字符识别）是指电子设备（例如扫描仪或数码相机）检查纸上打印的字符，通过检测暗、亮的模式确定其形状，然后用字符识别方法将形状翻译成计算机文字的过程；即，对文本资料进行扫描，然后对图像文件进行分析处理，获取文字及版面信息的过程。OCR技术非常专业，一般多是印刷、打印行业的从业人员使用，可以快速的将纸质资料转换为电子资料">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-logo.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-download.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-dir.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/phototest.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd1.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd2.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/dir.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/out.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/psm.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd3.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.383Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tesseract-OCR的安装使用训练[1]">
+<meta name="twitter:description" content="什么是OCROCR（Optical Character Recognition，光学字符识别）是指电子设备（例如扫描仪或数码相机）检查纸上打印的字符，通过检测暗、亮的模式确定其形状，然后用字符识别方法将形状翻译成计算机文字的过程；即，对文本资料进行扫描，然后对图像文件进行分析处理，获取文字及版面信息的过程。OCR技术非常专业，一般多是印刷、打印行业的从业人员使用，可以快速的将纸质资料转换为电子资料">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-logo.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Tesseract-OCR的安装使用训练[1]</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Tesseract-OCR的安装使用训练[1]</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-08-05T12:55:40.000Z" itemprop="datePublished" class="page-time">
+  2013-08-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是OCR"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是OCR</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tesseract-OCR"><span class="post-toc-number">2.</span> <span class="post-toc-text">Tesseract-OCR</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装Tesseract-OCR"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装Tesseract-OCR</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用Tesseract-OCR命令行工具"><span class="post-toc-number">4.</span> <span class="post-toc-text">使用Tesseract-OCR命令行工具</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Tesseract-OCR的安装使用训练[1]</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013年08月05日 20:55" datetime="2013-08-05T12:55:40.000Z"  itemprop="datePublished">2013-08-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="什么是OCR"><a href="#什么是OCR" class="headerlink" title="什么是OCR"></a>什么是OCR</h2><p>OCR（Optical Character Recognition，光学字符识别）是指电子设备（例如扫描仪或数码相机）检查纸上打印的字符，通过检测暗、亮的模式确定其形状，然后用字符识别方法将形状翻译成计算机文字的过程；即，对文本资料进行扫描，然后对图像文件进行分析处理，获取文字及版面信息的过程。OCR技术非常专业，一般多是印刷、打印行业的从业人员使用，可以快速的将纸质资料转换为电子资料。关于中文OCR，目前国内水平较高的有清华文通、汉王、尚书，其产品各有千秋，价格不菲。国外OCR发展较早，像一些大公司，如IBM、微软、HP等，即使没有推出单独的OCR产品，但是他们的研发团队早已掌握核心技术，将OCR功能植入了自身的软件系统。</p>
+<h2 id="Tesseract-OCR"><a href="#Tesseract-OCR" class="headerlink" title="Tesseract-OCR"></a>Tesseract-OCR</h2><p>Tesseract的OCR引擎最先由HP实验室于1985年开始研发，至1995年时已经成为OCR业内最准确的三款识别引擎之一。然而，HP不久便决定放弃OCR业务，Tesseract也从此尘封。</p>
+<p>数年以后，HP意识到，与其将Tesseract束之高阁，不如贡献给开源软件业，让其重焕新生－－2005年，Tesseract由美国内华达州信息技术研究所获得，并求诸于Google对Tesseract进行改进、消除Bug、优化工作。</p>
+<p>其官网上也有明显的标识</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-logo.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-logo.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-logo.png</div>
+            </figure></p>
+<p>Tesseract目前已作为开源项目发布在Google Code，其项目主页在这里：<a href="https://code.google.com/p/tesseract-ocr/" target="_blank" rel="external">https://code.google.com/p/tesseract-ocr/</a>，其最新版本3.02。</p>
+<h2 id="安装Tesseract-OCR"><a href="#安装Tesseract-OCR" class="headerlink" title="安装Tesseract-OCR"></a>安装Tesseract-OCR</h2><p>打开其下载页 <a href="https://code.google.com/p/tesseract-ocr/downloads/list" target="_blank" rel="external">https://code.google.com/p/tesseract-ocr/downloads/list</a></p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-download.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-download.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-download.png</div>
+            </figure></p>
+<p>我是window7，于是就直接下载tesseract-ocr-setup-3.02.02.exe，直接安装即可了。</p>
+<p>下面有众多的语言包，eng（英文），chi_sim（简体中文），等等，如果你需要，就自己下载</p>
+<p>安装过程就忽略了，反正就是指定下安装路径什么的，一直下一步</p>
+<p>安装完毕之后，应该差不多这样子</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-dir.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-dir.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/Tesseract-ocr-dir.png</div>
+            </figure></p>
+<p>Tessdata里放着语言库数据（之后我们训练后的文件，也放这里），还有就是tesseract.exe就是一个命令行工具了。</p>
+<h2 id="使用Tesseract-OCR命令行工具"><a href="#使用Tesseract-OCR命令行工具" class="headerlink" title="使用Tesseract-OCR命令行工具"></a>使用Tesseract-OCR命令行工具</h2><p>我们找一张要识别的图片，就拿他的吧，在安装目录下的doc文件夹里，有一张叫phototest.tif的文件，打开来看一下</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/phototest.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/phototest.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/phototest.png</div>
+            </figure></p>
+<p>好的，我们现在就来识别他</p>
+<p>打开命令行，进入到这个目录</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd1.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd1.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd1.png</div>
+            </figure></p>
+<p>然后输入tesseract  phototest.tif  out</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd2.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd2.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd2.png</div>
+            </figure></p>
+<p>看到doc目录下，出现了一个out.txt的文件，就是识别结果了，打开看</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/dir.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/dir.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/dir.png</div>
+            </figure></p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/out.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/out.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/out.png</div>
+            </figure></p>
+<p>嗯，识别的不错！（由于这个图片是他官方提供的，而且字体很规整，所以识别的也很好，在实际使用中，其实没有这么容易啦）</p>
+<p>Tesseract的一般使用格式：</p>
+<p>Tesseract  要识别的图像位置  输出文件的位置 [-l 语言库] [-psm 0-10] [配置文件]</p>
+<p>命令行工具还有一些其他的参数可以使用，</p>
+<p>-l ：用来指定语言</p>
+<p>例如：tesseract  phototest.tif  out  -l  eng</p>
+<p>-psm：用来指定页面段落模式</p>
+<p>他一共有11个参数可以使用</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/psm.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/psm.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/psm.png</div>
+            </figure></p>
+<p>如果出现EMPTY PAGE！！！的时候，可以加下-psm试试哦</p>
+<p>例如</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd3.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd3.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/08/cmd3.png</div>
+            </figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.383Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/" target="_blank" rel="external">http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OCR/">OCR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tesseract-OCR/">Tesseract-OCR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图像识别/">图像识别</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/&title=《Tesseract-OCR的安装使用训练[1]》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/&title=《Tesseract-OCR的安装使用训练[1]》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Tesseract-OCR的安装使用训练[1]》 — Hexo&url=http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2014/02/27/e4-bd-bf-e7-94-a8goagent-e4-bb-a3-e7-90-86-e4-bd-bfpip-e5-ae-89-e8-a3-85-e5-ba-93-e9-a3-9e-e4-b8-80-e8-88-ac-e7-9a-84-e6-84-9f-e8-a7-89/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用goagent代理使pip安装库飞一般的感觉</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">简单验证码识别思路与实现[第四步:匹配识别]</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831" data-title="Tesseract-OCR的安装使用训练[1]" data-url="http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/&title=《Tesseract-OCR的安装使用训练[1]》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/&title=《Tesseract-OCR的安装使用训练[1]》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Tesseract-OCR的安装使用训练[1]》 — Hexo&url=http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD50lEQVR42u3ay07jQBAFUP7/pxmJzWgU4txb1Q5Ic7xCYDtdJ4uiHh8f8fX5dT3+/HjP418/y+vZU/k7r8954MKBAwcOHEGo7auvA7gGuoZOnsrfk8eIAwcOHDjOcswOen305EBtYG3weYw4cODAgeP9HLP01paF18Hnn4UDBw4cOH4/R5L28kJrVpLlBR4OHDhw4PhZjtkQKD9WMjpqU+nm/Ad6pThw4MCBYzLNKcqt3/zzm/Y7cODAgeO/59gssW0aebNE2z5VR4cDBw4cONYceUj5ekHbWNwk9XbsFKVhHDhw4MCx4MgXzvKUtqmY2jfnDcFhnYoDBw4cOEYcbXMt+ZjkcPsliRlTtMqAAwcOHDhGHHnx05ZweUK942vI0/A3n4gDBw4cOG7jaFNp2+zbtwVn90ebgzhw4MCBY82xb8C1Sw/Js7Pw8lT9dKEBBw4cOHAsONoy7NTiQlvm5U/NvhIcOHDgwHGKY7YQMFtEyAPOQfcLDThw4MCB4xRH3qrbDHjOjqw2fC+exYEDBw4chzjylLlJnLPicNYKzIu3OmPjwIEDB454ttIGP4OY3Z+n21mK/eb/Dhw4cODAMeKYDZbaBDZLpde5b9ZALJqGOHDgwIFjxNG26tp6Z5Yg8yZgm25fPIUDBw4cOI5y5MtkeeGXpMlTrcl6NxAHDhw4cNzGsR/eJHe2BeFqgBQ/iwMHDhw4znK0Ca8dC7XPzrjzwvLwlgcOHDhw4Chn95tBTpsU25DuW3HAgQMHDhwbjqS1t2n55QOtNpUm769XKHDgwIEDx5pj1hlrM/mGJkefrfrhwIEDB46zHLN01RZmbQNxM16axYIDBw4cOM5y5Am1HSbNSqn8zadQcODAgQPHWY681Jm19vKhUX5Pux5XbA7iwIEDB44FR54gP49e0YHiM8wievFl48CBAweOBccmpFkwbZLevK0epOHAgQMHjgXH9Us3awc52az9l3DUp8KBAwcOHEdPlb9og5X/tU3neQmKAwcOHDju49isrOVMSRHYNgHbJmP0Zhw4cODAcYijHdvkywGbIdYsSa9SMg4cOHDgOFPdHGu0Dadeo/Kv/WKKdiEOHDhw4FhwnFpxuw47AZqtMpz63H/+78CBAwcOHAuOdtUg/zln2gyi9qBtEYgDBw4cOBKONrmeGgXNir3893kqxYEDBw4cd3AkybVtDiYtyFlgecLOQXHgwIEDx/s58tWHfTBtc7ClfBoRDhw4cOD4IY49Yn7/fkmiaGviwIEDB45DHO2i22zkM2vb5RDtEsOLzUEcOHDgwDHiaFNUDtSuFLTDp32ReWBVDgcOHDhw/L3+ACub4pVPvskmAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

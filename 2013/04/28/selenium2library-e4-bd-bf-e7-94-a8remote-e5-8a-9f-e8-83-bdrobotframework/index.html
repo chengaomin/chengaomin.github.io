@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Selenium2Library使用Remote功能(RobotFramework) | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="RFS,Robot Framework,Selenium2Library,open browser,remote_url">
+    <meta name="description" content="[
+                
+                    
+                    
+                
+                ](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/openbrowser.png
+            
+在selenium2library">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Selenium2Library使用Remote功能(RobotFramework)">
+<meta property="og:url" content="http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[
+                
+                    
+                    
+                
+                ](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/openbrowser.png
+            
+在selenium2library">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/openbrowser.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/demo_remote.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.364Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Selenium2Library使用Remote功能(RobotFramework)">
+<meta name="twitter:description" content="[
+                
+                    
+                    
+                
+                ](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/openbrowser.png
+            
+在selenium2library">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/openbrowser.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Selenium2Library使用Remote功能(RobotFramework)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Selenium2Library使用Remote功能(RobotFramework)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-04-28T00:32:22.000Z" itemprop="datePublished" class="page-time">
+  2013-04-28
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-下载"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.下载</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-启动主节点"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.启动主节点</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-启动子节点"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.启动子节点</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-测试调用"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.测试调用</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Selenium2Library使用Remote功能(RobotFramework)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013年04月28日 8:32" datetime="2013-04-28T00:32:22.000Z"  itemprop="datePublished">2013-04-28</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/openbrowser.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/openbrowser.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/openbrowser.png</div>
+            </figure></p>
+<p>在selenium2library库的open browser中，除了我们常用的url，browser外，还有几个不常用的参数，ff_profile_dir(这个在另外一篇文字中我讲过了)，今天主要是讲一下remote_url的用法</p>
+<p>&nbsp;</p>
+<h1 id="1-下载"><a href="#1-下载" class="headerlink" title="1.下载"></a>1.下载</h1><p>1）去selenium的官方googlecode下载selenium-server-standalone-XXXX.jar 地址<a href="https://code.google.com/p/selenium/downloads/list" target="_blank" rel="external">https://code.google.com/p/selenium/downloads/list</a></p>
+<p>2）若你没有java的运行环境，请自行安装下，自行配置好环境变量（略）</p>
+<p>&nbsp;</p>
+<h1 id="2-启动主节点"><a href="#2-启动主节点" class="headerlink" title="2.启动主节点"></a>2.启动主节点</h1><p>在命令行中打入命令java -jar selenium-server-standalone-XXXX.jar -role hub</p>
+<p>默认启动默认端口为4444，当然，你不喜欢4444也可以换个端口，加上 -port XXXX即可</p>
+<p>启动完后，你可以用浏览器打开 <a href="http://localhost:4444/grid/console" target="_blank" rel="external">http://localhost:4444/grid/console</a> 这个网址查看主节点的状态</p>
+<p>&nbsp;</p>
+<h1 id="3-启动子节点"><a href="#3-启动子节点" class="headerlink" title="3.启动子节点"></a>3.启动子节点</h1><p>现在我让另外一台机子做为子节点（主节点的机子也可以作为子节点）。同样打开命令</p>
+<p>java -jar selenium-server-standalone-XXXX.jar -role node -hub <a href="http://192.168.XX.XXX:4444/grid/register" target="_blank" rel="external">http://192.168.XX.XXX:4444/grid/register</a></p>
+<p>其中192.168.XX.XXX为主节点机子的ip地址，可以使用ipconfig命令在命令行查看得到。上面命令默认启动5555端口，可使用-port 更改。其他参数设置请自己看吧<a href="https://code.google.com/p/selenium/wiki/Grid2" target="_blank" rel="external">https://code.google.com/p/selenium/wiki/Grid2</a></p>
+<p>然后你可以在主节点机子上 ，输入<a href="http://localhost:4444/grid/console网址查看到这个子节点状态。" target="_blank" rel="external">http://localhost:4444/grid/console网址查看到这个子节点状态。</a></p>
+<p>&nbsp;</p>
+<h1 id="4-测试调用"><a href="#4-测试调用" class="headerlink" title="4.测试调用"></a>4.测试调用</h1><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/demo_remote.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/demo_remote.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/04/demo_remote.png</div>
+            </figure></p>
+<p>（子节点的电脑上也必须有相应的浏览器driver，driver地址也必须在path中）</p>
+<p>好了，运行一下，不出意外的话，子节点的浏览器就会起来了！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.364Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/" target="_blank" rel="external">http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFS/">RFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Robot-Framework/">Robot Framework</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Selenium2Library/">Selenium2Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/open-browser/">open browser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/remote-url/">remote_url</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/&title=《Selenium2Library使用Remote功能(RobotFramework)》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/&title=《Selenium2Library使用Remote功能(RobotFramework)》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Selenium2Library使用Remote功能(RobotFramework)》 — Hexo&url=http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2013/04/30/robotframework-e7-9a-84setup-e6-88-96teardowm-e4-b8-ad-e6-89-a7-e8-a1-8c-e5-a4-9a-e4-b8-aa-e5-85-b3-e9-94-ae-e5-ad-97/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">RobotFramework的Setup或Teardowm中执行多个关键字</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2013/03/20/robot-framework-e4-b8-ad-e5-90-af-e5-8a-a8firefox-e6-97-b6-e5-8a-a0-e8-bd-bd-e6-89-a9-e5-b1-95/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Robot Framework中启动Firefox时加载扩展</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework" data-title="Selenium2Library使用Remote功能(RobotFramework)" data-url="http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/&title=《Selenium2Library使用Remote功能(RobotFramework)》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/&title=《Selenium2Library使用Remote功能(RobotFramework)》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Selenium2Library使用Remote功能(RobotFramework)》 — Hexo&url=http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKklEQVR42u3awY7bMAwE0P3/n07PRZFkhnSKWPt8CgrV1lMPLIf6+Ymfx8vn35XJ2579fvb+Z99Kvjh8sLGxsW/CTkjJnye81yvbNck+n74TGxsb+zh2XmbaTedlLy+Nye83RmxsbGzs4NV5IWx3krcr2NjY2NjJh9vQ56oy9l8LGDY2NvbXs/PC8AiepGlpm5nXRfGDWRo2Njb217Pzqej3//7IfBsbGxv7i9mP8slHBbMhbruroQIbGxv7IHYb/e9D+XxUMNtJ0QJhY2NjH8TOC08S7rQj4SQemo0HoqPExsbGPoK9CeVbwD7KnxWtp3UbGxsb++bsywKasgRuDig59DeRFjY2NvZB7NkVxnZgsA+DNiPnNzvExsbGvjk75202mq/ZR1T1/SNsbGzsg9h5rcvLWH5wszXtgPmvDgwbGxv7CHY+92zjoddvTr6SjyhWBRgbGxv7OPZP+bSFJC9X7cWgC7I0bGxs7Nuyk3HvphVpj3X2/jqWwsbGxj6Inf+nP29I2oBpFhLNGh5sbGzsk9j5X55dwcxj+va656qIYmNjYx/E3sdAm/HtplFpdxV1Y9jY2NhHsNuxQVveNttNNl3MQ7CxsbEPYm8ajLYNmL3nE0eMjY2NfTZ7Fru3I4G2ZLZB0puV2NjY2EewN9d0ZiHRJy4G1U0LNjY29kHsWajUvrq91pOv2Ydi2NjY2HdnJ3FMHi21EU8SFeUFsmiisLGxsQ9it1FOHuIkBzRrkHJwVPCwsbGxj2C3cf9VkX0eA+Xj4XzIgY2NjX0q+9oIqR3rJld8ZsWv+DA2Njb2bdmbdmIWIbWJfXtx800BxsbGxj6anUf5beh/1eBhNqjAxsbGPpu9aT/yT+Yx0LXPKkvDxsbG/mL2o3xmzUY7VNhczSkGA9jY2NhHsK8tTrOVs+ZkvxIbGxv7JHYb3OTHkbcceRuzj7qwsbGxT2W3V3lmF3H2A+C8tYgKGDY2NvavZOfbbbufTcBUHw02Njb2L2ZvSsv/HPS+aZOwsbGxj2O3F242TUg+uG3L1UeyNGxsbOyvZ7ch0SxUmo0NNiVw9s+GjY2NfSv2H5ogDDfTwqgpAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

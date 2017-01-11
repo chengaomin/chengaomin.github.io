@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案 | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Mantis,Mantis图片附件,Mantis图片预览,Mantis查看大图">
+    <meta name="description" content="前些日子，公司使用的Mantis上，查看图片附件总是觉得很麻烦
+因为Mantis默认点击图片，是下载图片，下载之后再打开查看，实在麻烦
+今天也看到Mantis的群中，有朋友遇到一样的困扰，于是与大家分享一个我的方法
+方法1：在Mantis的配置文件中，加入此句，将这个值设的很大，就可以直接看到图片
+[php]
+$g_preview_attachments_inline_max_size=10000">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案">
+<meta property="og:url" content="http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前些日子，公司使用的Mantis上，查看图片附件总是觉得很麻烦
+因为Mantis默认点击图片，是下载图片，下载之后再打开查看，实在麻烦
+今天也看到Mantis的群中，有朋友遇到一样的困扰，于是与大家分享一个我的方法
+方法1：在Mantis的配置文件中，加入此句，将这个值设的很大，就可以直接看到图片
+[php]
+$g_preview_attachments_inline_max_size=10000">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/05/f1.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/05/f2.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案">
+<meta name="twitter:description" content="前些日子，公司使用的Mantis上，查看图片附件总是觉得很麻烦
+因为Mantis默认点击图片，是下载图片，下载之后再打开查看，实在麻烦
+今天也看到Mantis的群中，有朋友遇到一样的困扰，于是与大家分享一个我的方法
+方法1：在Mantis的配置文件中，加入此句，将这个值设的很大，就可以直接看到图片
+[php]
+$g_preview_attachments_inline_max_size=10000">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/05/f1.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-05-14T13:02:26.000Z" itemprop="datePublished" class="page-time">
+  2013-05-14
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#方法1："><span class="post-toc-number">1.</span> <span class="post-toc-text">方法1：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#方法2："><span class="post-toc-number">2.</span> <span class="post-toc-text">方法2：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#方法3："><span class="post-toc-number">3.</span> <span class="post-toc-text">方法3：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#以上3种方法均是独立的，您只要选择一种或二种。推荐1和3配合"><span class="post-toc-number">4.</span> <span class="post-toc-text">以上3种方法均是独立的，您只要选择一种或二种。推荐1和3配合</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013年05月14日 21:02" datetime="2013-05-14T13:02:26.000Z"  itemprop="datePublished">2013-05-14</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>前些日子，公司使用的Mantis上，查看图片附件总是觉得很麻烦</p>
+<p>因为Mantis默认点击图片，是下载图片，下载之后再打开查看，实在麻烦</p>
+<p>今天也看到Mantis的群中，有朋友遇到一样的困扰，于是与大家分享一个我的方法</p>
+<h1 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h1><p>在Mantis的配置文件中，加入此句，将这个值设的很大，就可以直接看到图片</p>
+<p>[php]</p>
+<p>$g_preview_attachments_inline_max_size=1000000;</p>
+<p>[/php]</p>
+<p>效果如图</p>
+<a id="more"></a>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/05/f1.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/05/f1.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/05/f1.png</div>
+            </figure></p>
+<p>这个方法其实不错，但是有个弊端，小尺寸的图片效果不错，但是大尺寸的图片，可能就还是看不起，还是得下载下来看，</p>
+<p>如上图的第三张图片</p>
+<p>于是继续探究</p>
+<h1 id="方法2："><a href="#方法2：" class="headerlink" title="方法2："></a>方法2：</h1><p>在Mantis的配置文件config_inc.php加</p>
+<p>[php]</p>
+<p>$g_form_security_validation = OFF;</p>
+<p>[/php]</p>
+<p>然后在core\file_api.php文件中，修改一段内容</p>
+<p>[php]</p>
+<p>$t_attachment[‘download_url’] = &quot;file_download.php?file_id=$t_id&amp;type=bug&amp;show_inline=1&quot;;</p>
+<p>[/php]</p>
+<p>此方法实现的效果就是，点击图片附件，将不会下载，而是直接在本页面预览大图片，基本已经很方便实用了</p>
+<h1 id="方法3："><a href="#方法3：" class="headerlink" title="方法3："></a>方法3：</h1><p>这个方法我们引入第三方控件，实现更佳酷炫的图片预览效果</p>
+<p>1.下载lightbox2 ，地址<a href="http://lokeshdhakar.com/projects/lightbox2/" target="_blank" rel="external">http://lokeshdhakar.com/projects/lightbox2/</a></p>
+<p>解压js和css两文件夹（其他不用）到mantis根目录下</p>
+<p>2.到core\print_api.php下,找到print_bug_attachments_list 方法，在其内部加上</p>
+<p>[php]</p>
+<p>echo &quot;&lt;script src=\&quot;js/jquery-1.7.2.min.js\&quot;&gt;&lt;/script&gt;&quot;;</p>
+<p>echo &quot;&lt;script src=\&quot;js/jquery-ui-1.8.18.custom.min.js\&quot;&gt;&lt;/script&gt;&quot;;</p>
+<p>echo &quot;&lt;script src=\&quot;js/jquery.smooth-scroll.min.js\&quot;&gt;&lt;/script&gt;&quot;;</p>
+<p>echo &quot;&lt;script src=\&quot;js/lightbox.js\&quot;&gt;&lt;/script&gt;&quot;;</p>
+<p>echo &quot;&lt;link rel=\&quot;stylesheet\&quot; href=\&quot;css/lightbox.css\&quot; type=\&quot;text/css\&quot; media=\&quot;screen\&quot; /&gt;&quot;;</p>
+<p>[/php]</p>
+<p>（就是使其倒入刚下载的js与css）</p>
+<p>3.继续在到core\print_api.php下,找到if ( $t_attachment[‘can_download’] )，将第一处的a标签最后，加入rel=”lightbox”或者rel=”lightbox[groupname]”，就是这样</p>
+<p>[php]</p>
+<p>$t_href_start = ‘&lt;a href=&quot;’ . string_attribute( $t_attachment[‘download_url’] ) . ‘&quot; rel=&quot;lightbox[group]&quot; &gt;’;</p>
+<p>[/php]</p>
+<p>4.再修改一下if ( !$t_attachment[‘exists’] ) 中的部分内容就更完美了</p>
+<p>比如注释掉echo $t_href_start;</p>
+<p>[php]</p>
+<p>//echo $t_href_start;</p>
+<p>[/php]</p>
+<p>再将</p>
+<p>[php]</p>
+<p>echo $t_href_end . ‘&amp;#160;’ . $t_href_start . $t_file_display_name . $t_href_end . $t_href_clicket . ‘ (‘ . $t_filesize . ‘ ‘ . lang_get( ‘bytes’ ) . ‘) ‘ . ‘&lt;span&gt;’ . $t_date_added . ‘&lt;/span&gt;’;</p>
+<p>[/php]</p>
+<p>改成</p>
+<p>[php]</p>
+<p>echo  $t_file_display_name  . $t_href_clicket . ‘ (‘ . $t_filesize . ‘ ‘ . lang_get( ‘bytes’ ) . ‘) ‘ . ‘&lt;span&gt;’ . $t_date_added . ‘&lt;/span&gt;’;</p>
+<p>[/php]</p>
+<p>OK,我们一起看一下现在的效果，点击图片</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/05/f2.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/05/f2.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/05/f2.png</div>
+            </figure></p>
+<p>现在就变的很酷炫了哦！还可以直接看下一张图片。赶紧试试吧，</p>
+<h1 id="以上3种方法均是独立的，您只要选择一种或二种。推荐1和3配合"><a href="#以上3种方法均是独立的，您只要选择一种或二种。推荐1和3配合" class="headerlink" title="以上3种方法均是独立的，您只要选择一种或二种。推荐1和3配合"></a>以上3种方法均是独立的，您只要选择一种或二种。推荐1和3配合</h1><p>任何问题，都可以留言，微博，邮件我</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.369Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/" target="_blank" rel="external">http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mantis/">Mantis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mantis图片附件/">Mantis图片附件</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mantis图片预览/">Mantis图片预览</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mantis查看大图/">Mantis查看大图</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/&title=《Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/&title=《Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案》 — Hexo&source=前些日子，公司使用的Mantis上，查看图片附件总是觉得很麻烦
+因为Mantis默认点击图片，是下载图片，下载之后再打开查看，实在麻烦
+今天也看到Mant..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案》 — Hexo&url=http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">自己写简单的RobotFramework的Library</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2013/05/08/robotframeworkselenium2libraryhttpwatch-e6-b5-8b-e8-af-95-e5-89-8d-e7-ab-af-e6-80-a7-e8-83-bd-e5-93-8d-e5-ba-94-e5-8a-a0-e8-bd-bd-e6-97-b6-e9-97-b4/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RobotFramework+Selenium2Library+Httpwatch测试前端性能/响应/加载时间</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2" data-title="Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案" data-url="http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/&title=《Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/&title=《Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案》 — Hexo&source=前些日子，公司使用的Mantis上，查看图片附件总是觉得很麻烦
+因为Mantis默认点击图片，是下载图片，下载之后再打开查看，实在麻烦
+今天也看到Mant..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案》 — Hexo&url=http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,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" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

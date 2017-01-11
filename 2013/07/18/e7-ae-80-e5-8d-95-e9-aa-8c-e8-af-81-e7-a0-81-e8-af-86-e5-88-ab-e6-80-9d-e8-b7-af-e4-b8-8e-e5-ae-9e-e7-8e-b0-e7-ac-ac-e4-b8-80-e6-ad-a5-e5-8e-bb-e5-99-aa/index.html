@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>简单验证码识别思路与实现[第一步:去噪] | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="验证码 验证码识别 验证码去噪 验证码分割 验证码算法">
+    <meta name="description" content="准备工作首先去下载多一些验证码，查看其特征
+[
+                
+                    
+                    
+                
+                ](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/1.png
+            
+我这里只是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单验证码识别思路与实现[第一步:去噪]">
+<meta property="og:url" content="http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="准备工作首先去下载多一些验证码，查看其特征
+[
+                
+                    
+                    
+                
+                ](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/1.png
+            
+我这里只是">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/1.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/2.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/3.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/4.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/5.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/6.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/7.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/VerifyCode.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.374Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单验证码识别思路与实现[第一步:去噪]">
+<meta name="twitter:description" content="准备工作首先去下载多一些验证码，查看其特征
+[
+                
+                    
+                    
+                
+                ](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/1.png
+            
+我这里只是">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/1.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">简单验证码识别思路与实现[第一步:去噪]</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">简单验证码识别思路与实现[第一步:去噪]</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2013-07-18T12:33:20.000Z" itemprop="datePublished" class="page-time">
+  2013-07-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#准备工作"><span class="post-toc-number">1.</span> <span class="post-toc-text">准备工作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下面开始进入正题，去噪！"><span class="post-toc-number">2.</span> <span class="post-toc-text">下面开始进入正题，去噪！</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-颜色阀值法"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.颜色阀值法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-八区域去噪法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.八区域去噪法</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#支持就转发或关注我一下呗"><span class="post-toc-number"></span> <span class="post-toc-text">支持就转发或关注我一下呗</span></a>
+        </nav>
+    </aside>
+    
+<article id="post-e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">简单验证码识别思路与实现[第一步:去噪]</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2013年07月18日 20:33" datetime="2013-07-18T12:33:20.000Z"  itemprop="datePublished">2013-07-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>首先去下载多一些验证码，查看其特征</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/1.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/1.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/1.png</div>
+            </figure></p>
+<p>我这里只是简单介绍比较简单的验证码识别思路，所以选取的是一些比较简单的验证码（无强力的干扰，字符无粘连，字符没有扭曲，字符没有旋转）</p>
+<p>我们放大一个验证码来看其特征</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/2.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/2.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/2.png</div>
+            </figure></p>
+<p>1很明显，虽然背景有很多噪点，但是颜色比字符浅了很多，很容易使用颜色阀值的方法来去除</p>
+<p>2字符没有粘连，这样的话，比较容易区分每个字符的边界，容易分割</p>
+<p>3字符规整，没有扭曲，没有旋转，而且观察这些验证码，一样的字符，只是颜色会不一样，形态一模一样，这又方便了我们做字幕，每个字符做一个即可</p>
+<h2 id="下面开始进入正题，去噪！"><a href="#下面开始进入正题，去噪！" class="headerlink" title="下面开始进入正题，去噪！"></a>下面开始进入正题，去噪！</h2><p>这里介绍2个最常用的去噪方法（1颜色阀值法，2八区域法）</p>
+<h3 id="1-颜色阀值法"><a href="#1-颜色阀值法" class="headerlink" title="1.颜色阀值法"></a>1.颜色阀值法</h3><p>我们上面这个验证码，采用这个方法就可以了，效果很好</p>
+<p>拿ps打开这个图像，看一下字符的像素点的RGB情况，和背景噪点的RGB情况，就很容易的发现，背景的RBG大，都在100以上，而字符的比较小，都在100一下，那么很容易取得100为阀值了</p>
+<p>代码：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/3.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/3.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/3.png</div>
+            </figure></p>
+<p>处理之后的结果</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/4.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/4.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/4.png</div>
+            </figure></p>
+<p>效果很不错，已经把几乎所有的背景噪点去除了，但是唯独留下了2个点，为什么没有去掉呢？？很明显，这2个点的RGB和字符接近，所以没有去掉，接下来，就是要把这2个点去掉</p>
+<h3 id="2-八区域去噪法"><a href="#2-八区域去噪法" class="headerlink" title="2.八区域去噪法"></a>2.八区域去噪法</h3><p>我们取验证码上任意黑色的一点，来进行对其周围8个区域分析</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/5.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/5.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/5.png</div>
+            </figure></p>
+<p>如果他周围8个点，都是白色，说明他一定是一个噪点！</p>
+<p>当然，这个你可以写成可配置的，比如，他周围要是有一个黑点，也可以判定其是噪点</p>
+<p>根据我这个验证码的特征，我可以配置成，周围都是白色，记为噪点，去除</p>
+<p>代码：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/6.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/6.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/6.png</div>
+            </figure></p>
+<p>处理后的效果：</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/7.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/7.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/7.png</div>
+            </figure></p>
+<p>好了，今天就说到这里，去噪还有很多方案，算法，我只是现学现卖的介绍2种比较简单和通用的方法而已</p>
+<p>今天群里那个同学的验证码，也可以通过上面的方法去噪哦</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/VerifyCode.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/VerifyCode.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/VerifyCode.png</div>
+            </figure></p>
+<p>下一篇将介绍字符分割算法，敬请期待！</p>
+<p>最后再推广下RF的群：247870083，欢迎加入。（恒总，给点推广费不）</p>
+<h1 id="支持就转发或关注我一下呗"><a href="#支持就转发或关注我一下呗" class="headerlink" title="支持就转发或关注我一下呗"></a>支持就转发或关注我一下呗</h1>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.374Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/" target="_blank" rel="external">http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/验证码-验证码识别-验证码去噪-验证码分割-验证码算法/">验证码 验证码识别 验证码去噪 验证码分割 验证码算法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/&title=《简单验证码识别思路与实现[第一步:去噪]》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/&title=《简单验证码识别思路与实现[第一步:去噪]》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单验证码识别思路与实现[第一步:去噪]》 — Hexo&url=http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">简单验证码识别思路与实现[第二步:分割字符]</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">自己写简单的RobotFramework的Library</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa" data-title="简单验证码识别思路与实现[第一步:去噪]" data-url="http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/&title=《简单验证码识别思路与实现[第一步:去噪]》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/&title=《简单验证码识别思路与实现[第一步:去噪]》 — Hexo&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单验证码识别思路与实现[第一步:去噪]》 — Hexo&url=http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,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" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

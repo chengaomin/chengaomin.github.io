@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Robot Framework + Selenium2Library 安装 | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="RFS,Robot Framework,Selenium2Library">
+    <meta name="description" content="对Robot Framework的简单介绍
+Robot Framework（以下简称RF）是一种基于Python的可扩展关键字驱动自动化测试框架。RF是一种通用的，应用和技术相互独立的框架，下面是一幅模块化的结构图，图片来自官方文档。
+[">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Robot Framework + Selenium2Library 安装">
+<meta property="og:url" content="http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="对Robot Framework的简单介绍
+Robot Framework（以下简称RF）是一种基于Python的可扩展关键字驱动自动化测试框架。RF是一种通用的，应用和技术相互独立的框架，下面是一幅模块化的结构图，图片来自官方文档。
+[">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/RF模块化结构.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/pybot.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/ride.png">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/Selenium2Library.png">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.360Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Robot Framework + Selenium2Library 安装">
+<meta name="twitter:description" content="对Robot Framework的简单介绍
+Robot Framework（以下简称RF）是一种基于Python的可扩展关键字驱动自动化测试框架。RF是一种通用的，应用和技术相互独立的框架，下面是一幅模块化的结构图，图片来自官方文档。
+[">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/RF模块化结构.png">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Robot Framework + Selenium2Library 安装</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Robot Framework + Selenium2Library 安装</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2012-12-03T12:01:29.000Z" itemprop="datePublished" class="page-time">
+  2012-12-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-robot-framework-selenium2library-e5-ae-89-e8-a3-85"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Robot Framework + Selenium2Library 安装</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2012年12月03日 20:01" datetime="2012-12-03T12:01:29.000Z"  itemprop="datePublished">2012-12-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Robot-Framework/">Robot Framework</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>对Robot Framework的简单介绍</strong></p>
+<p>Robot Framework（以下简称RF）是一种基于Python的可扩展关键字驱动自动化测试框架。RF是一种通用的，应用和技术相互独立的框架，下面是一幅模块化的结构图，图片来自官方文档。</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/RF模块化结构.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/RF模块化结构.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/RF模块化结构.png</div>
+            </figure></p>
+<p>若想更深入的了解RF，推荐你好好看一下RF的官方文档，地址：<a href="http://code.google.com/p/robotframework/" target="_blank" rel="external">http://code.google.com/p/robotframework/</a></p>
+<p>在我刚接触到他的时候，就觉得他就是一好产品，很容易上手，配合Selenium2Library，做自动化的web测试非常的简单易用。</p>
+<p>在我首次安装他的时候，真是艰辛啊，装了卸，卸了装，好几次之后，终于是装上了。</p>
+<p><strong>Robot Framework+Selenium2Library的安装</strong></p>
+<p>推荐安装内容及下载地址</p>
+<a id="more"></a>
+<p><strong>1.Python环境</strong></p>
+<p>你可以安装官方Python：<a href="http://www.python.org/download/releases/2.7.3/" target="_blank" rel="external">http://www.python.org/download/releases/2.7.3/</a>   下载合适你电脑的版本</p>
+<p>（我家里电脑是32位，公司电脑是64位。不管32还是64，都可以正常使用RFS）</p>
+<p>安装完成之后，记得配置好自己电脑的Path哦！</p>
+<p>怎么配置？？不用我说了吧。。。。</p>
+<p>还是说一下吧，右击“计算机”，点属性，点高级系统设置，点下方的环境变量，出来了，自己找到PATH（没有就自己新建一个），将你安装Python的目录写进去，比如我 D:\Python27;D:\Python27\Scripts ，ok，现在python环境ok了</p>
+<p>当然，我更推荐安装ActivePython：<a href="http://www.activestate.com/activepython/downloads" target="_blank" rel="external">http://www.activestate.com/activepython/downloads</a> ，下载对应版本，安装就ok，不用配置环境变量，他自动帮你配置好，而且还有一些其他实用工具包含在里面了。</p>
+<p><strong>2.wxpython （ride要有他支持）</strong></p>
+<p>地址：<a href="http://www.wxpython.org/download.php#stable" target="_blank" rel="external">http://www.wxpython.org/download.php#stable</a></p>
+<p>请下载对应的unicode的版本，一路下一步就ok了</p>
+<p><strong>3.Robot Framework</strong></p>
+<p>地址：<a href="http://code.google.com/p/robotframework/downloads/list" target="_blank" rel="external">http://code.google.com/p/robotframework/downloads/list</a></p>
+<p>下载你要的版本robotframework-2.7.5 一路下一步就ok</p>
+<p>验证安装是否成功：命令行打pybot –version</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/pybot.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/pybot.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/pybot.png</div>
+            </figure></p>
+<p><strong>4.Robot Framework ride</strong></p>
+<p>地址：<a href="https://github.com/robotframework/RIDE/downloads" target="_blank" rel="external">https://github.com/robotframework/RIDE/downloads</a></p>
+<p>robotframework-ride-0.53 下载下来，一路下一步也ok啦</p>
+<p>验证安装是否成功：打开D:\Python27\Scripts\ride.py</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/ride.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/ride.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/ride.png</div>
+            </figure></p>
+<p><strong>5.Selenium2Library</strong></p>
+<p>地址：<a href="https://github.com/rtomac/robotframework-selenium2library/downloads" target="_blank" rel="external">https://github.com/rtomac/robotframework-selenium2library/downloads</a></p>
+<p>robotframework-selenium2library-1.1.0 一路下一步就ok</p>
+<p>验证是否安装成功： 如下图</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/Selenium2Library.png" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/Selenium2Library.png" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/12/Selenium2Library.png</div>
+            </figure></p>
+<p>随意新建一个工程，一个suite，一个case，然后试着在suite中添加一个library，写Selenium2Library（注意大小写！），确定之后，不是红色，说明你已经成功了！按F5，看看是不是有这个了？如上图，如果有了，那么恭喜你，已经成功了！</p>
+<p>至此RFS的基本环境完成了！</p>
+<p>第1，2步是你必须这样做的，后面的3部，其实还有一个更容易的步骤，前提是你安装的activePython和你的网络正常！</p>
+<p>那么，完成好1，2部之后，直接打开命令行，打</p>
+<p>pip install robotframework</p>
+<p>pip install robotframework-ride</p>
+<p>pip install robotframework-selenium2library</p>
+<p>如果一切顺利，也就ok了！</p>
+<p><strong>常见问题：</strong></p>
+<p>1.想驱动IE，或者Chrome，请下载2个驱动，</p>
+<p>IE:<a href="http://code.google.com/p/selenium/downloads/list" target="_blank" rel="external">http://code.google.com/p/selenium/downloads/list</a></p>
+<p>Chrome:<a href="http://code.google.com/p/chromedriver/downloads/list" target="_blank" rel="external">http://code.google.com/p/chromedriver/downloads/list</a></p>
+<p>Firefox:不用驱动，直接可以</p>
+<p>将驱动放到D:\Python下即可</p>
+<p>2.请确保你的安装目录为英文，且没有空格</p>
+<p>你的用户名的文件夹也要是英文的哦（我前几天安装了win8，然后用户名是中文，最后安装木有成功啊！后来换英文，就ok了）</p>
+<p>3.记得我当初安装的时候，还遇到过一个报错，具体内容已经记不得了，反正就是一直报 ‘utf-8’ 什么的错</p>
+<p>解决办法就是到script目录下的某个py文件运行下就好了，具体我忘了，如果你遇到，试试吧</p>
+<p>4.如果安装有什么问题，回复或者mail</p>
+<p><strong>下期预告：</strong></p>
+<p><span style="color: #ff0000;"><strong>下次会更显数据库library的安装和连接mysql和sql server的例子</strong></span></p>
+<p><span style="color: #ff0000;"><strong>（网上连接数据库的文章就1篇，而且是连接的Oracle的，所以我也分享一下mysql和sql server吧）</strong></span></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.360Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/" target="_blank" rel="external">http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RFS/">RFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Robot-Framework/">Robot Framework</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Selenium2Library/">Selenium2Library</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/&title=《Robot Framework + Selenium2Library 安装》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/&title=《Robot Framework + Selenium2Library 安装》 — Hexo&source=对Robot Framework的简单介绍
+Robot Framework（以下简称RF）是一种基于Python的可扩展关键字驱动自动化测试框架。RF是一..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Robot Framework + Selenium2Library 安装》 — Hexo&url=http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2012/10/06/e4-ba-b2-e4-b8-b4-e4-ba-94-e6-9c-88-e5-a4-a9-e4-b8-8a-e6-b5-b7-e8-af-ba-e4-ba-9a-e6-96-b9-e8-88-9f-e6-bc-94-e5-94-b1-e4-bc-9a2012-10-5/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">亲临五月天上海诺亚方舟演唱会[2012.10.5]</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="robot-framework-selenium2library-e5-ae-89-e8-a3-85" data-title="Robot Framework + Selenium2Library 安装" data-url="http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/&title=《Robot Framework + Selenium2Library 安装》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/&title=《Robot Framework + Selenium2Library 安装》 — Hexo&source=对Robot Framework的简单介绍
+Robot Framework（以下简称RF）是一种基于Python的可扩展关键字驱动自动化测试框架。RF是一..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Robot Framework + Selenium2Library 安装》 — Hexo&url=http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqUlEQVR42u3aSW7DMBAEwPz/0841QCKlZ6HiAMWT4UVm8UASPfPxEY/Xl/H1navX30fvmVefLg88PDy8wdSvpnU/0Xtw8p3e86OlxMPDwzvGq05ld3OvLm4yZzw8PLz34VUv2cm2nt+H8fDw8P47rxph7KYHeHh4eH/Lyx9XpVYPmN7RspC14OHh4cW8fLN+n9dH6nt4eHh448trEqpWI9pem0Jztnh4eHgHePNYobeJVxuq8gXCw8PDe4a3VmoaX8TnbQqFMBcPDw9vzJuUsuZNAL2pr6UveHh4eDGvdwD0YoX7MlW1Dev++Xh4eHjP8HplsF7DQY9dXmI8PDy8A7xke8236fvIYHKc5Ev8w6zw8PDwVnm9rGJr6nlJbJRM4+Hh4R3o9kzC2UmUkBw2yZIlQfDluYeHh4e3xJsD8jJ/OYSNo+TLT/Hw8PAO8JIfVJsGkj/LC2+F8w0PDw/vQd5uBPAKxtbBEEUheHh4eKu83iS2likvvyUx8WXTFR4eHt4jvGqRvtcslR8M1eLcL1kLHh4e3oBXLThNmrF6bQR5kHH5Kzw8PLxVXq9larexoNc6UEim8fDw8B7nTQpg8yCjesxcdkbg4eHhrfKqV+R8404Wpbzdx80HeHh4eCd4k2L/pAxWfSdvCCtX+fDw8PDGvPK1tdUc0Lt8L7Re4eHh4R3gzetpvbat6ncKUTIeHh7eYV41ROi1GlS/0zuu8PDw8E7wXsUxiR4mRbVmOQ0PDw/vAC8f+eFR/VWvnFYG4OHh4a3y8tJX9XU14MhjjkJjFh4eHt4x3lYTQHXqeegwOtPw8PDw3phXjXTnc3v0YMDDw8Nb4k2i215YXDhU8PDw8I7xkq28GrbeT24SEBcWCA8PD+8Ar3e17TWkVktcx6MKPDw8vNr4BJkK2O5lH07eAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

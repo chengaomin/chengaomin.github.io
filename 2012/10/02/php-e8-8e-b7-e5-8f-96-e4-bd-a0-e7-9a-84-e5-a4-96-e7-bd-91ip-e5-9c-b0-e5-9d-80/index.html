@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>PHP获取你的外网IP地址 | Hexo | null</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="IP地址,PHP,外网IP">
+    <meta name="description" content="获取外网IP，其实很简单哦，win+r，输入cmd，再往cmd里输入ipconfig/all
+就能看到所有网络信息啦。。。
+[
+                
+                    
+                    
+                
+                cmd_ip](http://cgmblog-wordpress.stor.sinaap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP获取你的外网IP地址">
+<meta property="og:url" content="http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="获取外网IP，其实很简单哦，win+r，输入cmd，再往cmd里输入ipconfig/all
+就能看到所有网络信息啦。。。
+[
+                
+                    
+                    
+                
+                cmd_ip](http://cgmblog-wordpress.stor.sinaap">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/cmd_ip.gif">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/baidu_ip.gif">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138.gif">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138_yuan.gif">
+<meta property="og:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138_yuan2.gif">
+<meta property="og:updated_time" content="2017-01-11T07:42:49.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP获取你的外网IP地址">
+<meta name="twitter:description" content="获取外网IP，其实很简单哦，win+r，输入cmd，再往cmd里输入ipconfig/all
+就能看到所有网络信息啦。。。
+[
+                
+                    
+                    
+                
+                cmd_ip](http://cgmblog-wordpress.stor.sinaap">
+<meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/cmd_ip.gif">
+    
+        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">John Doe</h5>
+          <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                RF
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PHP获取你的外网IP地址</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">PHP获取你的外网IP地址</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2012-10-02T09:01:25.000Z" itemprop="datePublished" class="page-time">
+  2012-10-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">PHP获取你的外网IP地址</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2012年10月02日 17:01" datetime="2012-10-02T09:01:25.000Z"  itemprop="datePublished">2012-10-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术探讨/">技术探讨</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>获取外网IP，其实很简单哦，win+r，输入cmd，再往cmd里输入ipconfig/all</p>
+<p>就能看到所有网络信息啦。。。</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/cmd_ip.gif" alt="cmd_ip](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/cmd_ip.gif" title="">
+                </div>
+                <div class="image-caption">cmd_ip](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/cmd_ip.gif</div>
+            </figure></p>
+<p>正如你看到的，其实当你使用路由器，或者2台路由器，或者在公司等情况下</p>
+<p>这个方法其实不怎么灵，只能看到内网的ip，外网的貌似看到不到</p>
+<p>不慌，还有一个更easy的方法，直接的百度输入“ip”，第一条，直接跳出你的外网ip地址啦<a href="http://www.baidu.com/s?ie=utf-8&amp;bs=ip&amp;f=8&amp;rsv_bp=1&amp;rsv_spt=3&amp;wd=ip&amp;inputT=0" target="_blank" rel="external">百度一下【ip】</a></p>
+<a id="more"></a>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/baidu_ip.gif" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/baidu_ip.gif" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/baidu_ip.gif</div>
+            </figure></p>
+<p>如上图，就可以得到ip了，那么我们就使用php来获取他咯</p>
+<p>不过模拟在百度搜索ip，在获取这个ip，貌似有些麻烦了</p>
+<p>看上图，他提示说是来自于<a href="http://www.ip138.com" target="_blank" rel="external">www.ip138.com</a>，那么我们进去看看</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138.gif" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138.gif" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138.gif</div>
+            </figure></p>
+<p>哦，原来在这个页面可以有外网ip地址，那么我们就不要通过百度了，直接访问这个网址，然后从他的源码中截取这个ip，不就ok了嘛，打开其源码，需找半天，也没有看到ip地址，汗，再探</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138_yuan.gif" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138_yuan.gif" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138_yuan.gif</div>
+            </figure></p>
+<p>上图，看到他的ip地址其实是iframe中另一个地址来的，打开<a href="http://iframe.ip138.com/city.asp" target="_blank" rel="external">http://iframe.ip138.com/city.asp</a>，ip地址简单切赤裸裸的出现</p>
+<p>再看次源码</p>
+<p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138_yuan2.gif" alt="](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138_yuan2.gif" title="">
+                </div>
+                <div class="image-caption">](http://cgmblog-wordpress.stor.sinaapp.com/uploads/2012/10/ip138_yuan2.gif</div>
+            </figure></p>
+<p>OK，可以找到了。于是我们的思路就是使用php访问<a href="http://iframe.ip138.com/city.asp，获取其返回的源码，分割字符串等，从中只取出ip" target="_blank" rel="external">http://iframe.ip138.com/city.asp，获取其返回的源码，分割字符串等，从中只取出ip</a></p>
+<p>核心代码：<br>[php]<br>$ip = file_get_contents(‘<a href="http://iframe.ip138.com/city.asp" target="_blank" rel="external">http://iframe.ip138.com/city.asp</a>‘);<br>// 从ip138网上获取到您自己的外网ip<br>$ip1 = explode(&quot;[&quot;, $ip);<br>// 对获取到的内容进行筛选，得到想要的内容，只要ip地址,左边界是&quot;[&quot;<br>$ip2 = explode(&quot;]&quot;, $ip1[1]);<br>//右边界是&quot;]&quot;<br>$nowip = $ip2[0];<br>//保存变量<br>[/php]</p>
+<p>OK了，大功告成！</p>
+<p>以下是个人完整版，判断外网ip是否改变,自留<br>[php]<br>&lt;?php</p>
+<p>$ip = file_get_contents(‘<a href="http://iframe.ip138.com/city.asp" target="_blank" rel="external">http://iframe.ip138.com/city.asp</a>‘);<br>// 从ip138网上获取到您自己的外网ip<br>$ip1 = explode(&quot;[&quot;, $ip);<br>// 对获取到的内容进行筛选，得到想要的内容，只要ip地址,左边界是&quot;[&quot;<br>$ip2 = explode(&quot;]&quot;, $ip1[1]);<br>// 右边界是&quot;]&quot;<br>$nowip = $ip2[0];<br>// 保存变量<br>$content = file(‘ip.txt’);<br>// 打开ip.txt文件<br>$oldip = $content[0] ;<br>// 将原来的ip存入变量oldip<br>echo ‘上次ip：’ . $oldip ;<br>echo ‘现在ip：’ . $nowip ;<br>// 输出一下<br>if ($nowip == ‘’) {<br>    exit;<br>    // 获取不到外网ip，可能是断网了等其他情况，暂时不做操作<br>} else {<br>    if ($oldip != $nowip) {<br>        // 如果发现ip改变了<br>        $handle = fopen(‘ip.txt’, ‘w’);<br>        fwrite($handle, $nowip);<br>        // 将新的ip写入到ip.txt中<br>        fclose($handle);<br>        echo &quot;IP发生改变&quot;;<br>    } else {<br>        echo &quot;IP未发生改变&quot;;<br>    }<br>}<br>?&gt;<br>[/php]<br>代码第28行，我是输出了“IP发生改变”</p>
+<p>当ip改变后，后面的操作还可以自由发挥</p>
+<p>比如，发现ip改变之后，就立刻发生Email通知自己，或者通知他人</p>
+<p>（如何发生email，将在下一篇文章中详述）</p>
+<p>再有，发Email还是不够直接，要是我没去看mail怎么办？？</p>
+<p>直接发生短信，这样不就更容易让人知道嘛，</p>
+<p>so。。。。。。。。</p>
+<p>如何发生短信给自己，或者给别人，也请关注继续关注我</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-11T07:42:49.376Z" itemprop="dateUpdated">2017年1月11日 15:42</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/" target="_blank" rel="external">http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/</a>
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="John Doe">
+            John Doe
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IP地址/">IP地址</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/外网IP/">外网IP</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/&title=《PHP获取你的外网IP地址》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/&title=《PHP获取你的外网IP地址》 — Hexo&source=获取外网IP，其实很简单哦，win+r，输入cmd，再往cmd里输入ipconfig/all
+就能看到所有网络信息啦。。。
+[
+             ..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP获取你的外网IP地址》 — Hexo&url=http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2012/10/03/sql-server-2008-e5-8c-ba-e5-88-86-e5-a4-a7-e5-b0-8f-e5-86-99-e7-9a-84bug/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Sql Server 2008 区分大小写的BUG</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2012/10/01/e4-bd-bf-e7-94-a8-e5-8c-ba-e5-9f-9f-e9-99-90-e5-88-b6-e6-9d-a5-e5-8f-aa-e6-98-be-e7-a4-ba-e4-bd-a0-e6-83-b3-e8-a6-81-e7-9a-84-e5-8c-ba-e5-9f-9f-e7-99-be-e5-ba-a6-e5-9c-b0-e5-9b-beapi/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用区域限制来只显示你想要的区域(百度地图API)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+<div class="comments" id="comments">
+    <div class="ds-thread" data-thread-key="php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80" data-title="PHP获取你的外网IP地址" data-url="http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/"></div>
+</div>
+<script>
+lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
+
+var duoshuoQuery = {short_name:'chengaomin', theme: 'none'};
+lazyScripts.push('/js/embed.min.js?v=1.4.5');
+
+
+</script>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢支持~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Hexo &copy; 2015 - 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/&title=《PHP获取你的外网IP地址》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/&title=《PHP获取你的外网IP地址》 — Hexo&source=获取外网IP，其实很简单哦，win+r，输入cmd，再往cmd里输入ipconfig/all
+就能看到所有网络信息啦。。。
+[
+             ..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PHP获取你的外网IP地址》 — Hexo&url=http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2012/10/02/php-e8-8e-b7-e5-8f-96-e4-bd-a0-e7-9a-84-e5-a4-96-e7-bd-91ip-e5-9c-b0-e5-9d-80/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD3UlEQVR42u3aMXLcQAwEQP3/03bi4FymeDPAUpKrmtEVRS8XzQAGFh8f8fXr5Xq98+9fX+9/9m/v179/Mn97ss7wwoEDBw4ccajJ0vdP3vPlK99TJrtN9nxBhgMHDhw4DnHkyax9QYv12dvz9JwnXRw4cODA8XM48mfaQq4N+x4dBw4cOHD8ZI48yKJkimnaZh8OHDhw4Phejrzd9kQhl5d5ebPy8V4pDhw4cODoMl2UtP6X34/Md+DAgQMHjnIqbDbiMDsc2h8ybSL6swIOHDhw4FhztEmrXnqR/2eHTG05d7EaDhw4cOBYcOTBt8dCbarO9zD7T0B0YIYDBw4cOL6EYwY3a9i1aT5JzMVREw4cOHDgOMoxa+fNxhfyAi8ZO5iVlG9KOBw4cODAMeLYp94kyFkKnw0obPhw4MCBA8fTHHVzLXjZbP1Z03BYyOHAgQMHjsdahDOss3dmh1t5dBfx4sCBAweOBUeSFPNn2qG6dpAiT97DRI4DBw4cONYcbemVbz1v1bVh7JuD0fo4cODAgWPBMUuEs7TaFlenEnnRJcWBAwcOHGuOWeKcteHaFL5BH0LgwIEDB46jHO3W22TcvqsdoTjcHMSBAwcOHCOOWQuvZZq1/GZBzvaPAwcOHDie5sgLtiShbgrCJIz8YKwYZcCBAwcOHAuO2e88QbbNxHxYoW1WRqdwOHDgwIFjtP8nRgrygmqWyGdMUaLFgQMHDhwPc5y98hbkrFk5289fv3HgwIEDx8Mcs7G5fHChHYNo03xNjAMHDhw41hyzsmq2iU0Lb/Z7P/SAAwcOHDhajqSEy1NpntLatl3yxnaFiydx4MCBA8eaYzPckBd4G6zkk8zGJlYjDjhw4MCBozxn2W/l7AozrLoExYEDBw4ca448RbVbzAunJBlvnh+Wmjhw4MCB4wGODUo+vrA/LsrTZ1GI4sCBAweOEUceQLvd2QFSvmY7QhGR4cCBAweOQxzJnbzRlo8OJGu2f501HHHgwIEDx1mO2XZP4c7SfN6ILHaIAwcOHDgOceR5JznUyQnyUE+l0jcfHgcOHDhwrDlm4whtSEmoxahB3ExsUXDgwIEDx55jdUgTpLpZSZZ/mOSDFWMTOHDgwIFjzdEmsPZgaVZ6bYKcrY8DBw4cOM5ytKMJSZCbRDj7bscSLQ4cOHDgOMSxKcza4E81+DYl2Zu6FgcOHDhwfAlHOy6QtxTz7bajdUmBhwMHDhw4votj00Bsm3SzVuOBWHDgwIEDxyGOtiTLt3IfTH5nc8iUfyQcOHDgwLHnyFtps1Jq38KbHS/lNPWFAwcOHDiun/wNdxvYuwIPBvYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
