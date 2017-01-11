@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Chengaomin Blog</title>
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://chengaomin.github.io/"/>
   <updated>2017-01-11T07:42:49.383Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://chengaomin.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>chengaomin</name>
     
   </author>
   
@@ -17,8 +17,8 @@
   
   <entry>
     <title>使用goagent代理使pip安装库飞一般的感觉</title>
-    <link href="http://yoursite.com/2014/02/27/e4-bd-bf-e7-94-a8goagent-e4-bb-a3-e7-90-86-e4-bd-bfpip-e5-ae-89-e8-a3-85-e5-ba-93-e9-a3-9e-e4-b8-80-e8-88-ac-e7-9a-84-e6-84-9f-e8-a7-89/"/>
-    <id>http://yoursite.com/2014/02/27/e4-bd-bf-e7-94-a8goagent-e4-bb-a3-e7-90-86-e4-bd-bfpip-e5-ae-89-e8-a3-85-e5-ba-93-e9-a3-9e-e4-b8-80-e8-88-ac-e7-9a-84-e6-84-9f-e8-a7-89/</id>
+    <link href="https://chengaomin.github.io/2014/02/27/e4-bd-bf-e7-94-a8goagent-e4-bb-a3-e7-90-86-e4-bd-bfpip-e5-ae-89-e8-a3-85-e5-ba-93-e9-a3-9e-e4-b8-80-e8-88-ac-e7-9a-84-e6-84-9f-e8-a7-89/"/>
+    <id>https://chengaomin.github.io/2014/02/27/e4-bd-bf-e7-94-a8goagent-e4-bb-a3-e7-90-86-e4-bd-bfpip-e5-ae-89-e8-a3-85-e5-ba-93-e9-a3-9e-e4-b8-80-e8-88-ac-e7-9a-84-e6-84-9f-e8-a7-89/</id>
     <published>2014-02-27T05:30:39.000Z</published>
     <updated>2017-01-11T07:42:49.383Z</updated>
     
@@ -54,17 +54,17 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
-      <category term="技术探讨" scheme="http://yoursite.com/categories/Robot-Framework/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
+      <category term="技术探讨" scheme="https://chengaomin.github.io/categories/Robot-Framework/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
     
     
   </entry>
   
   <entry>
     <title>Tesseract-OCR的安装使用训练[1]</title>
-    <link href="http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/"/>
-    <id>http://yoursite.com/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/</id>
+    <link href="https://chengaomin.github.io/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/"/>
+    <id>https://chengaomin.github.io/2013/08/05/tesseract-ocr-e7-9a-84-e5-ae-89-e8-a3-85-e4-bd-bf-e7-94-a8-e8-ae-ad-e7-bb-831/</id>
     <published>2013-08-05T12:55:40.000Z</published>
     <updated>2017-01-11T07:42:49.383Z</updated>
     
@@ -172,21 +172,21 @@
     
     </summary>
     
-      <category term="技术探讨" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
+      <category term="技术探讨" scheme="https://chengaomin.github.io/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
     
     
-      <category term="OCR" scheme="http://yoursite.com/tags/OCR/"/>
+      <category term="OCR" scheme="https://chengaomin.github.io/tags/OCR/"/>
     
-      <category term="Tesseract-OCR" scheme="http://yoursite.com/tags/Tesseract-OCR/"/>
+      <category term="Tesseract-OCR" scheme="https://chengaomin.github.io/tags/Tesseract-OCR/"/>
     
-      <category term="图像识别" scheme="http://yoursite.com/tags/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/"/>
+      <category term="图像识别" scheme="https://chengaomin.github.io/tags/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/"/>
     
   </entry>
   
   <entry>
     <title>简单验证码识别思路与实现[第四步:匹配识别]</title>
-    <link href="http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/"/>
-    <id>http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/</id>
+    <link href="https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/"/>
+    <id>https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/</id>
     <published>2013-07-29T13:45:38.000Z</published>
     <updated>2017-01-11T07:42:49.378Z</updated>
     
@@ -232,17 +232,17 @@
     
     </summary>
     
-      <category term="技术探讨" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
+      <category term="技术探讨" scheme="https://chengaomin.github.io/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
     
     
-      <category term="验证码 验证码识别 验证码去噪 验证码分割 验证码算法" scheme="http://yoursite.com/tags/%E9%AA%8C%E8%AF%81%E7%A0%81-%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8E%BB%E5%99%AA-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%88%86%E5%89%B2-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%AE%97%E6%B3%95/"/>
+      <category term="验证码 验证码识别 验证码去噪 验证码分割 验证码算法" scheme="https://chengaomin.github.io/tags/%E9%AA%8C%E8%AF%81%E7%A0%81-%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8E%BB%E5%99%AA-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%88%86%E5%89%B2-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>简单验证码识别思路与实现[第三步:制作字库]</title>
-    <link href="http://yoursite.com/2013/07/27/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-89-e6-ad-a5-e5-88-b6-e4-bd-9c-e5-ad-97-e5-ba-93/"/>
-    <id>http://yoursite.com/2013/07/27/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-89-e6-ad-a5-e5-88-b6-e4-bd-9c-e5-ad-97-e5-ba-93/</id>
+    <link href="https://chengaomin.github.io/2013/07/27/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-89-e6-ad-a5-e5-88-b6-e4-bd-9c-e5-ad-97-e5-ba-93/"/>
+    <id>https://chengaomin.github.io/2013/07/27/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-89-e6-ad-a5-e5-88-b6-e4-bd-9c-e5-ad-97-e5-ba-93/</id>
     <published>2013-07-27T05:43:20.000Z</published>
     <updated>2017-01-11T07:42:49.379Z</updated>
     
@@ -317,17 +317,17 @@
     
     </summary>
     
-      <category term="技术探讨" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
+      <category term="技术探讨" scheme="https://chengaomin.github.io/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
     
     
-      <category term="验证码 验证码识别 验证码去噪 验证码分割 验证码算法" scheme="http://yoursite.com/tags/%E9%AA%8C%E8%AF%81%E7%A0%81-%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8E%BB%E5%99%AA-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%88%86%E5%89%B2-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%AE%97%E6%B3%95/"/>
+      <category term="验证码 验证码识别 验证码去噪 验证码分割 验证码算法" scheme="https://chengaomin.github.io/tags/%E9%AA%8C%E8%AF%81%E7%A0%81-%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8E%BB%E5%99%AA-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%88%86%E5%89%B2-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>简单验证码识别思路与实现[第二步:分割字符]</title>
-    <link href="http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/"/>
-    <id>http://yoursite.com/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/</id>
+    <link href="https://chengaomin.github.io/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/"/>
+    <id>https://chengaomin.github.io/2013/07/23/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-ba-8c-e6-ad-a5-e5-88-86-e5-89-b2-e5-ad-97-e7-ac-a6/</id>
     <published>2013-07-23T06:03:46.000Z</published>
     <updated>2017-01-11T07:42:49.369Z</updated>
     
@@ -449,17 +449,17 @@
     
     </summary>
     
-      <category term="技术探讨" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
+      <category term="技术探讨" scheme="https://chengaomin.github.io/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
     
     
-      <category term="验证码 验证码识别 验证码去噪 验证码分割 验证码算法" scheme="http://yoursite.com/tags/%E9%AA%8C%E8%AF%81%E7%A0%81-%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8E%BB%E5%99%AA-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%88%86%E5%89%B2-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%AE%97%E6%B3%95/"/>
+      <category term="验证码 验证码识别 验证码去噪 验证码分割 验证码算法" scheme="https://chengaomin.github.io/tags/%E9%AA%8C%E8%AF%81%E7%A0%81-%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8E%BB%E5%99%AA-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%88%86%E5%89%B2-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>简单验证码识别思路与实现[第一步:去噪]</title>
-    <link href="http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/"/>
-    <id>http://yoursite.com/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/</id>
+    <link href="https://chengaomin.github.io/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/"/>
+    <id>https://chengaomin.github.io/2013/07/18/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e4-b8-80-e6-ad-a5-e5-8e-bb-e5-99-aa/</id>
     <published>2013-07-18T12:33:20.000Z</published>
     <updated>2017-01-11T07:42:49.374Z</updated>
     
@@ -551,17 +551,17 @@
     
     </summary>
     
-      <category term="技术探讨" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
+      <category term="技术探讨" scheme="https://chengaomin.github.io/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
     
     
-      <category term="验证码 验证码识别 验证码去噪 验证码分割 验证码算法" scheme="http://yoursite.com/tags/%E9%AA%8C%E8%AF%81%E7%A0%81-%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8E%BB%E5%99%AA-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%88%86%E5%89%B2-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%AE%97%E6%B3%95/"/>
+      <category term="验证码 验证码识别 验证码去噪 验证码分割 验证码算法" scheme="https://chengaomin.github.io/tags/%E9%AA%8C%E8%AF%81%E7%A0%81-%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8E%BB%E5%99%AA-%E9%AA%8C%E8%AF%81%E7%A0%81%E5%88%86%E5%89%B2-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>自己写简单的RobotFramework的Library</title>
-    <link href="http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/"/>
-    <id>http://yoursite.com/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/</id>
+    <link href="https://chengaomin.github.io/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/"/>
+    <id>https://chengaomin.github.io/2013/06/24/e8-87-aa-e5-b7-b1-e5-86-99-e7-ae-80-e5-8d-95-e7-9a-84robotframework-e7-9a-84library/</id>
     <published>2013-06-24T06:29:48.000Z</published>
     <updated>2017-01-11T07:42:49.374Z</updated>
     
@@ -647,23 +647,23 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
     
-      <category term="RFS" scheme="http://yoursite.com/tags/RFS/"/>
+      <category term="RFS" scheme="https://chengaomin.github.io/tags/RFS/"/>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
-      <category term="Library" scheme="http://yoursite.com/tags/Library/"/>
+      <category term="Library" scheme="https://chengaomin.github.io/tags/Library/"/>
     
-      <category term="RF" scheme="http://yoursite.com/tags/RF/"/>
+      <category term="RF" scheme="https://chengaomin.github.io/tags/RF/"/>
     
   </entry>
   
   <entry>
     <title>Mantis的附件图片实现预览/弹出层动画效果预览图片(LightBox2)的完美解决方案</title>
-    <link href="http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/"/>
-    <id>http://yoursite.com/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/</id>
+    <link href="https://chengaomin.github.io/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/"/>
+    <id>https://chengaomin.github.io/2013/05/14/mantis-e7-9a-84-e9-99-84-e4-bb-b6-e5-9b-be-e7-89-87-e5-ae-9e-e7-8e-b0-e9-a2-84-e8-a7-88-e5-bc-b9-e5-87-ba-e5-b1-82-e5-8a-a8-e7-94-bb-e6-95-88-e6-9e-9c-e9-a2-84-e8-a7-88-e5-9b-be-e7-89-87lightbox2/</id>
     <published>2013-05-14T13:02:26.000Z</published>
     <updated>2017-01-11T07:42:49.369Z</updated>
     
@@ -749,23 +749,23 @@
     
     </summary>
     
-      <category term="技术探讨" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
+      <category term="技术探讨" scheme="https://chengaomin.github.io/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
     
     
-      <category term="Mantis" scheme="http://yoursite.com/tags/Mantis/"/>
+      <category term="Mantis" scheme="https://chengaomin.github.io/tags/Mantis/"/>
     
-      <category term="Mantis图片附件" scheme="http://yoursite.com/tags/Mantis%E5%9B%BE%E7%89%87%E9%99%84%E4%BB%B6/"/>
+      <category term="Mantis图片附件" scheme="https://chengaomin.github.io/tags/Mantis%E5%9B%BE%E7%89%87%E9%99%84%E4%BB%B6/"/>
     
-      <category term="Mantis图片预览" scheme="http://yoursite.com/tags/Mantis%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88/"/>
+      <category term="Mantis图片预览" scheme="https://chengaomin.github.io/tags/Mantis%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88/"/>
     
-      <category term="Mantis查看大图" scheme="http://yoursite.com/tags/Mantis%E6%9F%A5%E7%9C%8B%E5%A4%A7%E5%9B%BE/"/>
+      <category term="Mantis查看大图" scheme="https://chengaomin.github.io/tags/Mantis%E6%9F%A5%E7%9C%8B%E5%A4%A7%E5%9B%BE/"/>
     
   </entry>
   
   <entry>
     <title>RobotFramework+Selenium2Library+Httpwatch测试前端性能/响应/加载时间</title>
-    <link href="http://yoursite.com/2013/05/08/robotframeworkselenium2libraryhttpwatch-e6-b5-8b-e8-af-95-e5-89-8d-e7-ab-af-e6-80-a7-e8-83-bd-e5-93-8d-e5-ba-94-e5-8a-a0-e8-bd-bd-e6-97-b6-e9-97-b4/"/>
-    <id>http://yoursite.com/2013/05/08/robotframeworkselenium2libraryhttpwatch-e6-b5-8b-e8-af-95-e5-89-8d-e7-ab-af-e6-80-a7-e8-83-bd-e5-93-8d-e5-ba-94-e5-8a-a0-e8-bd-bd-e6-97-b6-e9-97-b4/</id>
+    <link href="https://chengaomin.github.io/2013/05/08/robotframeworkselenium2libraryhttpwatch-e6-b5-8b-e8-af-95-e5-89-8d-e7-ab-af-e6-80-a7-e8-83-bd-e5-93-8d-e5-ba-94-e5-8a-a0-e8-bd-bd-e6-97-b6-e9-97-b4/"/>
+    <id>https://chengaomin.github.io/2013/05/08/robotframeworkselenium2libraryhttpwatch-e6-b5-8b-e8-af-95-e5-89-8d-e7-ab-af-e6-80-a7-e8-83-bd-e5-93-8d-e5-ba-94-e5-8a-a0-e8-bd-bd-e6-97-b6-e9-97-b4/</id>
     <published>2013-05-08T12:39:30.000Z</published>
     <updated>2017-01-11T07:42:49.366Z</updated>
     
@@ -885,23 +885,23 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
-      <category term="httpwatch" scheme="http://yoursite.com/tags/httpwatch/"/>
+      <category term="httpwatch" scheme="https://chengaomin.github.io/tags/httpwatch/"/>
     
-      <category term="Selenium2Library" scheme="http://yoursite.com/tags/Selenium2Library/"/>
+      <category term="Selenium2Library" scheme="https://chengaomin.github.io/tags/Selenium2Library/"/>
     
-      <category term="前端性能" scheme="http://yoursite.com/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD/"/>
+      <category term="前端性能" scheme="https://chengaomin.github.io/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD/"/>
     
   </entry>
   
   <entry>
     <title>RobotFramework的Setup或Teardowm中执行多个关键字</title>
-    <link href="http://yoursite.com/2013/04/30/robotframework-e7-9a-84setup-e6-88-96teardowm-e4-b8-ad-e6-89-a7-e8-a1-8c-e5-a4-9a-e4-b8-aa-e5-85-b3-e9-94-ae-e5-ad-97/"/>
-    <id>http://yoursite.com/2013/04/30/robotframework-e7-9a-84setup-e6-88-96teardowm-e4-b8-ad-e6-89-a7-e8-a1-8c-e5-a4-9a-e4-b8-aa-e5-85-b3-e9-94-ae-e5-ad-97/</id>
+    <link href="https://chengaomin.github.io/2013/04/30/robotframework-e7-9a-84setup-e6-88-96teardowm-e4-b8-ad-e6-89-a7-e8-a1-8c-e5-a4-9a-e4-b8-aa-e5-85-b3-e9-94-ae-e5-ad-97/"/>
+    <id>https://chengaomin.github.io/2013/04/30/robotframework-e7-9a-84setup-e6-88-96teardowm-e4-b8-ad-e6-89-a7-e8-a1-8c-e5-a4-9a-e4-b8-aa-e5-85-b3-e9-94-ae-e5-ad-97/</id>
     <published>2013-04-30T03:03:06.000Z</published>
     <updated>2017-01-11T07:42:49.379Z</updated>
     
@@ -942,25 +942,25 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
     
-      <category term="RFS" scheme="http://yoursite.com/tags/RFS/"/>
+      <category term="RFS" scheme="https://chengaomin.github.io/tags/RFS/"/>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
-      <category term="run keywords" scheme="http://yoursite.com/tags/run-keywords/"/>
+      <category term="run keywords" scheme="https://chengaomin.github.io/tags/run-keywords/"/>
     
-      <category term="setup" scheme="http://yoursite.com/tags/setup/"/>
+      <category term="setup" scheme="https://chengaomin.github.io/tags/setup/"/>
     
-      <category term="teardown" scheme="http://yoursite.com/tags/teardown/"/>
+      <category term="teardown" scheme="https://chengaomin.github.io/tags/teardown/"/>
     
   </entry>
   
   <entry>
     <title>Selenium2Library使用Remote功能(RobotFramework)</title>
-    <link href="http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/"/>
-    <id>http://yoursite.com/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/</id>
+    <link href="https://chengaomin.github.io/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/"/>
+    <id>https://chengaomin.github.io/2013/04/28/selenium2library-e4-bd-bf-e7-94-a8remote-e5-8a-9f-e8-83-bdrobotframework/</id>
     <published>2013-04-28T00:32:22.000Z</published>
     <updated>2017-01-11T07:42:49.364Z</updated>
     
@@ -1005,25 +1005,25 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
     
-      <category term="RFS" scheme="http://yoursite.com/tags/RFS/"/>
+      <category term="RFS" scheme="https://chengaomin.github.io/tags/RFS/"/>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
-      <category term="Selenium2Library" scheme="http://yoursite.com/tags/Selenium2Library/"/>
+      <category term="Selenium2Library" scheme="https://chengaomin.github.io/tags/Selenium2Library/"/>
     
-      <category term="open browser" scheme="http://yoursite.com/tags/open-browser/"/>
+      <category term="open browser" scheme="https://chengaomin.github.io/tags/open-browser/"/>
     
-      <category term="remote_url" scheme="http://yoursite.com/tags/remote-url/"/>
+      <category term="remote_url" scheme="https://chengaomin.github.io/tags/remote-url/"/>
     
   </entry>
   
   <entry>
     <title>Robot Framework中启动Firefox时加载扩展</title>
-    <link href="http://yoursite.com/2013/03/20/robot-framework-e4-b8-ad-e5-90-af-e5-8a-a8firefox-e6-97-b6-e5-8a-a0-e8-bd-bd-e6-89-a9-e5-b1-95/"/>
-    <id>http://yoursite.com/2013/03/20/robot-framework-e4-b8-ad-e5-90-af-e5-8a-a8firefox-e6-97-b6-e5-8a-a0-e8-bd-bd-e6-89-a9-e5-b1-95/</id>
+    <link href="https://chengaomin.github.io/2013/03/20/robot-framework-e4-b8-ad-e5-90-af-e5-8a-a8firefox-e6-97-b6-e5-8a-a0-e8-bd-bd-e6-89-a9-e5-b1-95/"/>
+    <id>https://chengaomin.github.io/2013/03/20/robot-framework-e4-b8-ad-e5-90-af-e5-8a-a8firefox-e6-97-b6-e5-8a-a0-e8-bd-bd-e6-89-a9-e5-b1-95/</id>
     <published>2013-03-20T05:39:24.000Z</published>
     <updated>2017-01-11T07:42:49.359Z</updated>
     
@@ -1073,27 +1073,27 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
-      <category term="技术探讨" scheme="http://yoursite.com/categories/Robot-Framework/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
+      <category term="技术探讨" scheme="https://chengaomin.github.io/categories/Robot-Framework/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
     
     
-      <category term="RFS" scheme="http://yoursite.com/tags/RFS/"/>
+      <category term="RFS" scheme="https://chengaomin.github.io/tags/RFS/"/>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
-      <category term="ff_profile_dir" scheme="http://yoursite.com/tags/ff-profile-dir/"/>
+      <category term="ff_profile_dir" scheme="https://chengaomin.github.io/tags/ff-profile-dir/"/>
     
-      <category term="firefox" scheme="http://yoursite.com/tags/firefox/"/>
+      <category term="firefox" scheme="https://chengaomin.github.io/tags/firefox/"/>
     
-      <category term="httpwatch" scheme="http://yoursite.com/tags/httpwatch/"/>
+      <category term="httpwatch" scheme="https://chengaomin.github.io/tags/httpwatch/"/>
     
   </entry>
   
   <entry>
     <title>使用Jenkins自动执行Robot Framework中的case</title>
-    <link href="http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/"/>
-    <id>http://yoursite.com/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/</id>
+    <link href="https://chengaomin.github.io/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/"/>
+    <id>https://chengaomin.github.io/2013/01/15/e4-bd-bf-e7-94-a8jenkins-e8-87-aa-e5-8a-a8-e6-89-a7-e8-a1-8crobot-framework-e4-b8-ad-e7-9a-84case/</id>
     <published>2013-01-15T12:47:10.000Z</published>
     <updated>2017-01-11T07:42:49.362Z</updated>
     
@@ -1132,21 +1132,21 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
     
-      <category term="Jenkins" scheme="http://yoursite.com/tags/Jenkins/"/>
+      <category term="Jenkins" scheme="https://chengaomin.github.io/tags/Jenkins/"/>
     
-      <category term="RFS" scheme="http://yoursite.com/tags/RFS/"/>
+      <category term="RFS" scheme="https://chengaomin.github.io/tags/RFS/"/>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
   </entry>
   
   <entry>
     <title>Robot Framework中使用AtuoItLibrary教程</title>
-    <link href="http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/"/>
-    <id>http://yoursite.com/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/</id>
+    <link href="https://chengaomin.github.io/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/"/>
+    <id>https://chengaomin.github.io/2013/01/10/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8atuoitlibrary-e6-95-99-e7-a8-8b/</id>
     <published>2013-01-10T12:19:10.000Z</published>
     <updated>2017-01-11T07:42:49.356Z</updated>
     
@@ -1204,21 +1204,21 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
     
-      <category term="RFS" scheme="http://yoursite.com/tags/RFS/"/>
+      <category term="RFS" scheme="https://chengaomin.github.io/tags/RFS/"/>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
-      <category term="AutoItLibrary" scheme="http://yoursite.com/tags/AutoItLibrary/"/>
+      <category term="AutoItLibrary" scheme="https://chengaomin.github.io/tags/AutoItLibrary/"/>
     
   </entry>
   
   <entry>
     <title>Robot Framework中使用HttpLibrary教程and中文支持</title>
-    <link href="http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/"/>
-    <id>http://yoursite.com/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/</id>
+    <link href="https://chengaomin.github.io/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/"/>
+    <id>https://chengaomin.github.io/2013/01/09/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8httplibrary-e6-95-99-e7-a8-8b/</id>
     <published>2013-01-09T12:58:17.000Z</published>
     <updated>2017-01-11T07:42:49.355Z</updated>
     
@@ -1305,21 +1305,21 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
     
-      <category term="RFS" scheme="http://yoursite.com/tags/RFS/"/>
+      <category term="RFS" scheme="https://chengaomin.github.io/tags/RFS/"/>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
-      <category term="HttpLibrary" scheme="http://yoursite.com/tags/HttpLibrary/"/>
+      <category term="HttpLibrary" scheme="https://chengaomin.github.io/tags/HttpLibrary/"/>
     
   </entry>
   
   <entry>
     <title>Robot Framework中使用DatabaseLibrary来连接数据库(SQLServer+MySQL)</title>
-    <link href="http://yoursite.com/2012/12/05/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93sqlservermysql/"/>
-    <id>http://yoursite.com/2012/12/05/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93sqlservermysql/</id>
+    <link href="https://chengaomin.github.io/2012/12/05/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93sqlservermysql/"/>
+    <id>https://chengaomin.github.io/2012/12/05/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93sqlservermysql/</id>
     <published>2012-12-05T13:00:27.000Z</published>
     <updated>2017-01-11T07:42:49.357Z</updated>
     
@@ -1423,23 +1423,23 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
     
-      <category term="RFS" scheme="http://yoursite.com/tags/RFS/"/>
+      <category term="RFS" scheme="https://chengaomin.github.io/tags/RFS/"/>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
-      <category term="Database Library" scheme="http://yoursite.com/tags/Database-Library/"/>
+      <category term="Database Library" scheme="https://chengaomin.github.io/tags/Database-Library/"/>
     
-      <category term="pyodbc" scheme="http://yoursite.com/tags/pyodbc/"/>
+      <category term="pyodbc" scheme="https://chengaomin.github.io/tags/pyodbc/"/>
     
   </entry>
   
   <entry>
     <title>Robot Framework中使用DatabaseLibrary来连接数据库(MySQL)</title>
-    <link href="http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/"/>
-    <id>http://yoursite.com/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/</id>
+    <link href="https://chengaomin.github.io/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/"/>
+    <id>https://chengaomin.github.io/2012/12/04/robot-framework-e4-b8-ad-e4-bd-bf-e7-94-a8databaselibrary-e6-9d-a5-e8-bf-9e-e6-8e-a5-e6-95-b0-e6-8d-ae-e5-ba-93mysql/</id>
     <published>2012-12-04T13:30:20.000Z</published>
     <updated>2017-01-11T07:42:49.353Z</updated>
     
@@ -1530,21 +1530,21 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
     
-      <category term="RFS" scheme="http://yoursite.com/tags/RFS/"/>
+      <category term="RFS" scheme="https://chengaomin.github.io/tags/RFS/"/>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
-      <category term="Database Library" scheme="http://yoursite.com/tags/Database-Library/"/>
+      <category term="Database Library" scheme="https://chengaomin.github.io/tags/Database-Library/"/>
     
   </entry>
   
   <entry>
     <title>Robot Framework + Selenium2Library 安装</title>
-    <link href="http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/"/>
-    <id>http://yoursite.com/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/</id>
+    <link href="https://chengaomin.github.io/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/"/>
+    <id>https://chengaomin.github.io/2012/12/03/robot-framework-selenium2library-e5-ae-89-e8-a3-85/</id>
     <published>2012-12-03T12:01:29.000Z</published>
     <updated>2017-01-11T07:42:49.360Z</updated>
     
@@ -1649,21 +1649,21 @@
     
     </summary>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/categories/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/categories/Robot-Framework/"/>
     
     
-      <category term="RFS" scheme="http://yoursite.com/tags/RFS/"/>
+      <category term="RFS" scheme="https://chengaomin.github.io/tags/RFS/"/>
     
-      <category term="Robot Framework" scheme="http://yoursite.com/tags/Robot-Framework/"/>
+      <category term="Robot Framework" scheme="https://chengaomin.github.io/tags/Robot-Framework/"/>
     
-      <category term="Selenium2Library" scheme="http://yoursite.com/tags/Selenium2Library/"/>
+      <category term="Selenium2Library" scheme="https://chengaomin.github.io/tags/Selenium2Library/"/>
     
   </entry>
   
   <entry>
     <title>亲临五月天上海诺亚方舟演唱会[2012.10.5]</title>
-    <link href="http://yoursite.com/2012/10/06/e4-ba-b2-e4-b8-b4-e4-ba-94-e6-9c-88-e5-a4-a9-e4-b8-8a-e6-b5-b7-e8-af-ba-e4-ba-9a-e6-96-b9-e8-88-9f-e6-bc-94-e5-94-b1-e4-bc-9a2012-10-5/"/>
-    <id>http://yoursite.com/2012/10/06/e4-ba-b2-e4-b8-b4-e4-ba-94-e6-9c-88-e5-a4-a9-e4-b8-8a-e6-b5-b7-e8-af-ba-e4-ba-9a-e6-96-b9-e8-88-9f-e6-bc-94-e5-94-b1-e4-bc-9a2012-10-5/</id>
+    <link href="https://chengaomin.github.io/2012/10/06/e4-ba-b2-e4-b8-b4-e4-ba-94-e6-9c-88-e5-a4-a9-e4-b8-8a-e6-b5-b7-e8-af-ba-e4-ba-9a-e6-96-b9-e8-88-9f-e6-bc-94-e5-94-b1-e4-bc-9a2012-10-5/"/>
+    <id>https://chengaomin.github.io/2012/10/06/e4-ba-b2-e4-b8-b4-e4-ba-94-e6-9c-88-e5-a4-a9-e4-b8-8a-e6-b5-b7-e8-af-ba-e4-ba-9a-e6-96-b9-e8-88-9f-e6-bc-94-e5-94-b1-e4-bc-9a2012-10-5/</id>
     <published>2012-10-06T06:47:41.000Z</published>
     <updated>2017-01-11T07:42:49.350Z</updated>
     
@@ -1806,25 +1806,25 @@
     
     </summary>
     
-      <category term="生活生活" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活生活" scheme="https://chengaomin.github.io/categories/%E7%94%9F%E6%B4%BB%E7%94%9F%E6%B4%BB/"/>
     
     
-      <category term="五月天" scheme="http://yoursite.com/tags/%E4%BA%94%E6%9C%88%E5%A4%A9/"/>
+      <category term="五月天" scheme="https://chengaomin.github.io/tags/%E4%BA%94%E6%9C%88%E5%A4%A9/"/>
     
-      <category term="五月天演唱会上海" scheme="http://yoursite.com/tags/%E4%BA%94%E6%9C%88%E5%A4%A9%E6%BC%94%E5%94%B1%E4%BC%9A%E4%B8%8A%E6%B5%B7/"/>
+      <category term="五月天演唱会上海" scheme="https://chengaomin.github.io/tags/%E4%BA%94%E6%9C%88%E5%A4%A9%E6%BC%94%E5%94%B1%E4%BC%9A%E4%B8%8A%E6%B5%B7/"/>
     
-      <category term="五月天诺亚方舟上海" scheme="http://yoursite.com/tags/%E4%BA%94%E6%9C%88%E5%A4%A9%E8%AF%BA%E4%BA%9A%E6%96%B9%E8%88%9F%E4%B8%8A%E6%B5%B7/"/>
+      <category term="五月天诺亚方舟上海" scheme="https://chengaomin.github.io/tags/%E4%BA%94%E6%9C%88%E5%A4%A9%E8%AF%BA%E4%BA%9A%E6%96%B9%E8%88%9F%E4%B8%8A%E6%B5%B7/"/>
     
-      <category term="演唱会" scheme="http://yoursite.com/tags/%E6%BC%94%E5%94%B1%E4%BC%9A/"/>
+      <category term="演唱会" scheme="https://chengaomin.github.io/tags/%E6%BC%94%E5%94%B1%E4%BC%9A/"/>
     
-      <category term="诺亚方舟" scheme="http://yoursite.com/tags/%E8%AF%BA%E4%BA%9A%E6%96%B9%E8%88%9F/"/>
+      <category term="诺亚方舟" scheme="https://chengaomin.github.io/tags/%E8%AF%BA%E4%BA%9A%E6%96%B9%E8%88%9F/"/>
     
   </entry>
   
   <entry>
     <title>Sql Server 2008 区分大小写的BUG</title>
-    <link href="http://yoursite.com/2012/10/03/sql-server-2008-e5-8c-ba-e5-88-86-e5-a4-a7-e5-b0-8f-e5-86-99-e7-9a-84bug/"/>
-    <id>http://yoursite.com/2012/10/03/sql-server-2008-e5-8c-ba-e5-88-86-e5-a4-a7-e5-b0-8f-e5-86-99-e7-9a-84bug/</id>
+    <link href="https://chengaomin.github.io/2012/10/03/sql-server-2008-e5-8c-ba-e5-88-86-e5-a4-a7-e5-b0-8f-e5-86-99-e7-9a-84bug/"/>
+    <id>https://chengaomin.github.io/2012/10/03/sql-server-2008-e5-8c-ba-e5-88-86-e5-a4-a7-e5-b0-8f-e5-86-99-e7-9a-84bug/</id>
     <published>2012-10-03T08:27:50.000Z</published>
     <updated>2017-01-11T07:42:49.347Z</updated>
     
@@ -1846,10 +1846,10 @@
     
     </summary>
     
-      <category term="技术探讨" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
+      <category term="技术探讨" scheme="https://chengaomin.github.io/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E8%AE%A8/"/>
     
     
-      <category term="Sql Server 2008" scheme="http://yoursite.com/tags/Sql-Server-2008/"/>
+      <category term="Sql Server 2008" scheme="https://chengaomin.github.io/tags/Sql-Server-2008/"/>
     
   </entry>
   

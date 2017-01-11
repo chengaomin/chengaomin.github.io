@@ -13,7 +13,7 @@
     
     
     
-    <title>简单验证码识别思路与实现[第四步:匹配识别] | Hexo | null</title>
+    <title>简单验证码识别思路与实现[第四步:匹配识别] | Chengaomin Blog | null</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -28,8 +28,8 @@
 将2个list，比如a=[0,0,0,1,1,1,0]和n[0]=[0,1,0,1,1,0,0] ，对应位置进行异或运">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单验证码识别思路与实现[第四步:匹配识别]">
-<meta property="og:url" content="http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/index.html">
+<meta property="og:site_name" content="Chengaomin Blog">
 <meta property="og:description" content="终于到了最后识别了，希望就在眼前了！！！
 识别的话，过程大概就是：拿到验证码→去噪→分割（放大）→转成01序列→与字库匹配→得到识别结果。
 说白了，就是重复下前面的工作，然后加一个与字符匹配的算法咯
@@ -49,7 +49,7 @@
 将2个list，比如a=[0,0,0,1,1,1,0]和n[0]=[0,1,0,1,1,0,0] ，对应位置进行异或运">
 <meta name="twitter:image" content="http://cgmblog-wordpress.stor.sinaapp.com/uploads/2013/07/匹配code.png">
     
-        <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+        <link rel="alternative" href="/atom.xml" title="Chengaomin Blog" type="application/atom+xml">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/style.css?v=1.4.5">
@@ -70,7 +70,7 @@
           <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
-          <h5 class="nickname">John Doe</h5>
+          <h5 class="nickname">chengaomin</h5>
           <a href="mailto:ichengaomin@qq.com" title="ichengaomin@qq.com" class="mail">ichengaomin@qq.com</a>
         </hgroup>
       </div>
@@ -107,14 +107,14 @@
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="https://github.com/yscoder" target="_blank" >
+              <a href="https://github.com/chengaomin" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="http://www.weibo.com/ysweb" target="_blank" >
+              <a href="http://weibo.com/cgm24" target="_blank" >
                 <i class="icon icon-lg icon-weibo"></i>
                 Weibo
               </a>
@@ -246,12 +246,12 @@
 </span><br>
 
 
-        这里写留言或版权声明：<a href="/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" target="_blank" rel="external">http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/</a>
+        这里写留言或版权声明：<a href="/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" target="_blank" rel="external">https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/</a>
     </div>
     <footer>
-        <a href="http://yoursite.com">
-            <img src="/img/avatar.jpg" alt="John Doe">
-            John Doe
+        <a href="https://chengaomin.github.io">
+            <img src="/img/avatar.jpg" alt="chengaomin">
+            chengaomin
         </a>
     </footer>
 </blockquote>
@@ -275,7 +275,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&title=《简单验证码识别思路与实现[第四步:匹配识别]》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&title=《简单验证码识别思路与实现[第四步:匹配识别]》 — Chengaomin Blog&pic=https://chengaomin.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -285,22 +285,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&title=《简单验证码识别思路与实现[第四步:匹配识别]》 — Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&title=《简单验证码识别思路与实现[第四步:匹配识别]》 — Chengaomin Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单验证码识别思路与实现[第四步:匹配识别]》 — Hexo&url=http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单验证码识别思路与实现[第四步:匹配识别]》 — Chengaomin Blog&url=https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&via=https://chengaomin.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -345,7 +345,7 @@
     
 
 <div class="comments" id="comments">
-    <div class="ds-thread" data-thread-key="e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab" data-title="简单验证码识别思路与实现[第四步:匹配识别]" data-url="http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/"></div>
+    <div class="ds-thread" data-thread-key="e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab" data-title="简单验证码识别思路与实现[第四步:匹配识别]" data-url="https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/"></div>
 </div>
 <script>
 lazyScripts.push('//cdn.bootcss.com/marked/0.3.6/marked.min.js');
@@ -413,7 +413,7 @@ lazyScripts.push('/js/embed.min.js?v=1.4.5');
     <div class="bottom">
         <p>
             <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>Hexo &copy; 2015 - 2017</span>
+            <span>Chengaomin Blog &copy; 2015 - 2017</span>
         </p>
     </div>
 </footer>
@@ -427,7 +427,7 @@ lazyScripts.push('/js/embed.min.js?v=1.4.5');
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&title=《简单验证码识别思路与实现[第四步:匹配识别]》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&title=《简单验证码识别思路与实现[第四步:匹配识别]》 — Chengaomin Blog&pic=https://chengaomin.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -437,22 +437,22 @@ lazyScripts.push('/js/embed.min.js?v=1.4.5');
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&title=《简单验证码识别思路与实现[第四步:匹配识别]》 — Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&title=《简单验证码识别思路与实现[第四步:匹配识别]》 — Chengaomin Blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单验证码识别思路与实现[第四步:匹配识别]》 — Hexo&url=http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&via=http://yoursite.com" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《简单验证码识别思路与实现[第四步:匹配识别]》 — Chengaomin Blog&url=https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/&via=https://chengaomin.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://chengaomin.github.io/2013/07/29/e7-ae-80-e5-8d-95-e9-aa-8c-e8-af-81-e7-a0-81-e8-af-86-e5-88-ab-e6-80-9d-e8-b7-af-e4-b8-8e-e5-ae-9e-e7-8e-b0-e7-ac-ac-e5-9b-9b-e6-ad-a5-e5-8c-b9-e9-85-8d-e8-af-86-e5-88-ab/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -463,7 +463,7 @@ lazyScripts.push('/js/embed.min.js?v=1.4.5');
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVYAAAFWCAAAAAAXxOpfAAAF/klEQVR42u3aQXLjSAwEwPn/p73X2bAlVwFkDNtOnhwyRXVn81AB4M+f+Pr463p/T3L/58/ff/f9737+1ucr30W769WFFStWrFixPoC1XVDy3/b579GvfXc+guv9AUd7wYoVK1asWI9iTQJTG4Zmx7BJLLNAlt9TvApYsWLFihXrL2BNtv1+G/mRDINOWfqZFX2wYsWKFSvW38P6njLfRntsSWC6r4SEFStWrFix/mzW5AdmwSVvY+THNius5C/NBcEOK1asWLFiPYS1jS+/+e+LL6xYsWLFivWfsn6UVxubkvvbIc5kq0l4yoNarYQVK1asWLEewtqWKmbba4sp7XryBkl+bEkZ6Js7sWLFihUr1qNY76jfJK2OzdhE8uTZEEk+olGfPFasWLFixfow1qvGEWZw+zZP+/zNUEg9hoIVK1asWLE+mHXGdEfEadsbbZJpy0Z5meaLT7BixYoVK9YDWdul55TXNm9mkagd8ti8XlixYsWKFeuJrMkn+8XNQttstGLDmjelvvgEK1asWLFiPYo1aVfcAXFVAGp3UY9QtOMmWLFixYoV6yGsycZmww1JU6QtuOQH2RZx2ri5qmNhxYoVK1asj2GdBZcN9yw8XVWCue/XsWLFihUr1hNZZyFjFnT2sakNbflQxazt9M3LhBUrVqxYsT6etajHjEonVzVjkgC3KfTMikcvV4sVK1asWLEewjr7yaQVMbtnVrLZBMS2iFMMbWDFihUrVqyHsOZhYjaikbdw7mjM3DEa0kY0rFixYsWK9ZmseZDa/MwmplwV1PKYld/z8slYsWLFihXrIax5EJk1P9qySI6SR6VZiygfDXl5J1asWLFixfp41lnzI196W8RpWy/tYbT7alssWLFixYoV61msbeCYDT3MRh9y9KuaLpuxkpelFqxYsWLFivXxrLPRirxZ0pZFNi2fq16X2QgIVqxYsWLFehZr237ICw2bwYv22K4qxCRNnSjAYcWKFStWrIewtuWMNlS1G7h2DVeNZcyCGlasWLFixfozWDcFl3zwYnYAeYmkBZ2toU5hWLFixYoV6z9lbTf8fkv5AcyW3pLlfafNf7/YI1asWLFixXoU66bZkEST2fjFLLrN2i379fzvmVixYsWKFetRrEmcyoPRbIByU1KZTZ7muHWUxIoVK1asWA9kbYsm+Y9t2iR3lGzakZF2R1ixYsWKFeu5rHlUmo1QzA5sVqzJ198GtW9iIlasWLFixXoga94+2VyzQJagzBpFbaspWgNWrFixYsV6IGvLPWvGzI7wqrZQW7iZlWywYsWKFSvWU1j3QwmzqLR58lVloHZVbSTFihUrVqxYn8+aDzS0JZh2SOKOQkyLPquTfPEtrFixYsWK9RDWfBvthtsRhztKHsXAxGigpHhnsWLFihUr1key7h/aBprZnXmzZDOo0b4oL02wYsWKFSvWQ1hnBZH3MSsvqbQosz5SstpZM2Y4eIEVK1asWLE+hnXWRMmHNvbBZfPJPqLNyklYsWLFihXrWaybn2+LKVF5YhSM8tdl0xyKyk9YsWLFihXrUaxtzJoVRNrNtNGnDUmb9XzzNKxYsWLFivUQ1llDZd+MmXG0n8yevF8DVqxYsWLFehbrvvGQQ+cbu6Mckzyt3Vf9zmLFihUrVqwPY0220XIkWHkjJy/3bFops1fn5XqwYsWKFSvWQ1jbReSDj23hJl/i7Mnti9LGxz/JhRUrVqxYsT6G9SO42iZNPvrQDkPMDj4f2mhX8hIXK1asWLFi/UGsbViZxaZNqyP/71X3RO0WrFixYsWK9fGssyjTNks2gaatEuXPST7J1zALlFixYsWKFesTWJNQtV/uVeWbzdhHPqKRr+3ld7FixYoVK9ajWDflj3wYYnOEs622ZJtGEVasWLFixfobWGelk31jJhp9KO/JX5q87YQVK1asWLH+Ntb2u0nbI2+HzNbWlmPaHWHFihUrVqxnsSblj3YoYcY9K4JsCi75t3IfrFixYsWK9RTWGcd+SCIfvJg1b9rBjrxsNDtOrFixYsWK9WGs/wF6QYQB3J0kzwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,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" alt="微信分享二维码">
 </div>
 
 
